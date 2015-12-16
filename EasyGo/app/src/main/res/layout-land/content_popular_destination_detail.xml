@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="tc.easygo.PopularDestinationDetailActivity"
+    tools:showIn="@layout/activity_popular_destination_detail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/nav_preview" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/nav_map" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/nav_plan" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/nav_gallery" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/nav_tips" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_SlideShow"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/destinasi_populer_ijen" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Kawah Ijen"
+                android:textColor="@color/colorOrange"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/tv_ketinggian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="2,799 mdpl (9,183 ft)"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:text="Kecamatan Licin, Banyuwangi"/>
+
+            <TextView
+                android:id="@+id/tv_JenisWisata"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Wisata alam dan ekowisata"
+                android:textColor="@color/colorYellow"
+                android:textSize="14sp"
+                android:textStyle="italic" />
+
+            <RatingBar
+                android:id="@+id/rb_RataRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:numStars="5"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#000"
+                android:text="Penilaian dari 95 pengguna"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="9">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="5"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="1. Pemandangan\n2. Kemudahan akses\n3. Fasilitas\n4. Pengelolaan\n5. Harga"
+                        android:textColor="#000"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:orientation="vertical">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        style="@style/starRatingBar"
+                        android:numStars="5"/>
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        style="@style/starRatingBar"
+                        android:numStars="5"/>
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        style="@style/starRatingBar"
+                        android:numStars="5"/>
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        style="@style/starRatingBar"
+                        android:numStars="5"/>
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="15dp"
+                        style="@style/starRatingBar"
+                        android:numStars="5"/>
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Beri penilaian dan ulasan"
+                android:textColor="@color/colorOrange" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

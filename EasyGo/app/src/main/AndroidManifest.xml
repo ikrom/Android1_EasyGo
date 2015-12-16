@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="tc.easygo" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -45,6 +47,11 @@
         <activity
             android:name=".TipsItemDetail"
             android:label="@string/title_activity_tips_item_detail"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".PopularDestinationDetailActivity"
+            android:label="@string/title_activity_popular_destination_detail"
             android:theme="@style/AppTheme" >
         </activity>
     </application>

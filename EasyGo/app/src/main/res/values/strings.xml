@@ -30,4 +30,6 @@
     </string-array>
     <string name="title_activity_tips_item">Tips Travelling</string>
     <string name="title_activity_tips_item_detail">TipsItemDetail</string>
+    <string name="title_activity_popular_destination_detail">PopularDestinationDetailActivity
+    </string>
 </resources>

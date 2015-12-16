@@ -6,4 +6,6 @@
     <color name="colorYellow">#C5B736</color>
     <color name="colorOrange">#E58141</color>
     <color name="colorToolbar">#C5B736</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorWhite">#fff</color>
 </resources>

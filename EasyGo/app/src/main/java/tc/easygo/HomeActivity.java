@@ -15,8 +15,17 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        ImageView homePopular = (ImageView)findViewById(R.id.home_popular_destination);
         ImageView homeTips = (ImageView)findViewById(R.id.home_tips);
         ImageView homePlan = (ImageView)findViewById(R.id.home_plan);
+
+        homePopular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,PopularDestinationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         homePlan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +46,7 @@ public class HomeActivity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setTitle("Menu");
 
     }
 }
