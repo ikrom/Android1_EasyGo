@@ -26,7 +26,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/nav_preview" />
+                android:background="@drawable/nav_preview_orange" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -46,6 +46,7 @@
                 android:background="@drawable/nav_plan" />
 
             <ImageButton
+                android:id="@+id/ib_NavGallery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -92,16 +93,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="2,799 mdpl (9,183 ft)"
+                android:text=""
                 android:textColor="#000"
                 android:textSize="16sp"
                 android:textStyle="italic" />
 
             <TextView
+                android:id="@+id/tv_kecamatan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Kecamatan Licin, Banyuwangi"
+                android:text=""
                 android:textColor="#000"
                 android:textSize="16sp"
                 android:textStyle="italic" />
@@ -111,24 +113,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Wisata alam dan ekowisata"
+                android:text=""
                 android:textColor="@color/colorYellow"
                 android:textSize="14sp"
                 android:textStyle="italic" />
 
             <RatingBar
-                android:id="@+id/rb_RataRating"
+                android:id="@+id/rb_DetailRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:numStars="5" />
+                android:numStars="5"
+                style="@style/bigStarRatingBar"/>
 
             <TextView
+                android:id="@+id/tv_JumlahReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:gravity="center"
-                android:text="Penilaian dari 95 pengguna"
+                android:text=""
                 android:textColor="#000" />
 
             <LinearLayout
@@ -161,30 +165,35 @@
                     android:orientation="vertical">
 
                     <RatingBar
+                        android:id="@+id/rb_DetailRatingPemandangan"
                         style="@style/smallstarRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:numStars="5" />
 
                     <RatingBar
+                        android:id="@+id/rb_DetailRatingKemudahanAkses"
                         style="@style/smallstarRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:numStars="5" />
 
                     <RatingBar
+                        android:id="@+id/rb_DetailRatingFasilitas"
                         style="@style/smallstarRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:numStars="5" />
 
                     <RatingBar
+                        android:id="@+id/rb_DetailRatingPengelolaan"
                         style="@style/smallstarRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
                         android:numStars="5" />
 
                     <RatingBar
+                        android:id="@+id/rb_DetailRatingHarga"
                         style="@style/smallstarRatingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="15dp"
@@ -221,9 +230,10 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_JamBuka"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Setiap hari *Menyesuaikan dengan kondisi cuaca*"
+                        android:text=""
                         android:textColor="@color/colorBlack" />
 
                 </LinearLayout>
@@ -242,9 +252,10 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_Harga"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Wisdom\nHari biasa Rp 5.000,-\nHari libur Rp 7.500,-\nWisman\nHari biasa Rp 100.000,-\nHari libur Rp 150.000,-"
+                        android:text=""
                         android:textColor="@color/colorBlack" />
                 </LinearLayout>
 
@@ -271,9 +282,10 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_WaktuTerbaik"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Juli - September\nDini hari - Matahari terbit"
+                        android:text=""
                         android:textColor="@color/colorBlack" />
 
                 </LinearLayout>
@@ -292,9 +304,10 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tv_DitempuhMenggunakan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Kendaraan Pribadi\nKendaraan Umum"
+                        android:text=""
                         android:textColor="@color/colorBlack" />
                 </LinearLayout>
 
@@ -308,17 +321,19 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tv_DurasiRute"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="57 menit via Banywangi kota\n1 jam 34 menit via Bondowoso"
+                android:text=""
                 android:textColor="@color/colorBlack" />
 
             <TextView
+                android:id="@+id/tv_Deskripsi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Inilah salah satu pesona keindahan alam Indonesia yang luar biasa dan telah memukau banyak wisatawan dari berbagai negara. Di sini dapat Anda lihat danau kawah luas berwarna hijau toska yang menakjubkan bersama api berwarna biru dari belerangnya saat malam hari, dan berpadu dengan keramahan masyarakat dan budayanya."
+                android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/colorBlack" />
 
@@ -328,6 +343,16 @@
                 android:layout_marginBottom="5dp"
                 android:text="Fasilitas"
                 android:textColor="@color/colorBlack" />
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ListView
+                    android:id="@+id/lv_Fasilitas"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </ListView>
+            </LinearLayout>-->
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -395,7 +420,9 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/btn_list_detail_populer" />
+                        android:background="@drawable/btn_list_detail_populer"
+                        android:cacheColorHint="@android:color/transparent"
+                        android:dividerHeight="0dp"/>
                 </LinearLayout>
 
                 <TextView
@@ -574,23 +601,26 @@
                     android:background="@drawable/photo_reviewer" />
 
                 <TextView
+                    android:id="@+id/tv_ReviewerNama"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sheila R."
+                    android:text=""
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/tv_ReviewerKota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Yogyakarta"
+                    android:text=""
                     android:textColor="@color/colorBlack" />
 
                 <TextView
+                    android:id="@+id/tv_ReviewerNegara"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="10dp"
-                    android:text="Indonesia"
+                    android:text=""
                     android:textColor="@color/colorBlack" />
 
                 <LinearLayout
@@ -605,11 +635,12 @@
                         android:background="@drawable/star" />
 
                     <TextView
+                        android:id="@+id/tv_ReviewerJumlahReview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:gravity="center_vertical"
-                        android:text="5 Ulasan"
+                        android:text=""
                         android:textSize="12sp"/>
                 </LinearLayout>
 
@@ -624,12 +655,13 @@
                         android:background="@drawable/icon_lencana" />
 
                     <TextView
+                        android:id="@+id/tv_JumlahReviewBermanfaat"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="4"
                         android:gravity="center_vertical"
-                        android:text="2 Ulasan bermanfaat"
+                        android:text=""
                         android:textSize="12sp"/>
                 </LinearLayout>
             </LinearLayout>
@@ -653,9 +685,10 @@
                     android:background="@drawable/profil_tag_grey_box"
                     android:orientation="vertical">
                     <TextView
+                        android:id="@+id/tv_ReviewerJudul"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Wonderful Ijen Crater"
+                        android:text="r"
                         android:textColor="@color/colorYellow"
                         android:textStyle="italic"/>
                     <LinearLayout
@@ -663,30 +696,33 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp">
                         <RatingBar
+                            android:id="@+id/rb_ReviewerRating"
                             android:layout_width="wrap_content"
                             android:layout_height="12dp"
                             style="@style/smallstarRatingBar"
                             android:layout_gravity="center_vertical"/>
                         <TextView
+                            android:id="@+id/tv_ReviewerTanggal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1 minggu yang lalu"
+                            android:text=""
                             android:layout_marginLeft="5dp"
                             android:textSize="12sp"
                             android:layout_gravity="center_vertical"
                             android:textColor="@color/colorBlack"/>
                     </LinearLayout>
                     <TextView
+                        android:id="@+id/tv_ReviewerDeskripsi"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Sebaiknya pendakian dilakukan saat musim kemarau, karena cuaca yang butuk berdampak pada banyaknya kabut asap"
+                        android:text=""
                         android:textSize="12sp"
                         android:textColor="@color/colorBlack"
                         android:layout_marginBottom="10dp"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Apakah ulasan ini bermanfaat?"
+                        android:text=""
                         android:textColor="@color/colorBlack"
                         android:textSize="12sp"/>
                     <LinearLayout
@@ -699,9 +735,10 @@
                             android:layout_height="20dp"
                             android:background="@drawable/btn_list_detail_populer"/>
                         <TextView
+                            android:id="@+id/tv_ReviewerBermanfaat"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:text="2"
+                            android:text=""
                             android:background="@color/colorYellow"
                             android:layout_marginLeft="10dp"
                             android:paddingLeft="15dp"
@@ -742,6 +779,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
                 android:weightSum="5">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -753,15 +791,17 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_lokasi_terdekat_tempat_wisata"/>
                     <TextView
+                        android:id="@+id/tv_TempatWisataNama"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="DESA WISATA USING"
+                        android:text=""
                         android:layout_marginTop="5dp"
                         android:textColor="@color/colorBlack"/>
                     <RatingBar
+                        android:id="@+id/rb_TempatWisataRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/starRatingBar"/>
+                        style="@style/smallstarRatingBar"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -769,9 +809,28 @@
                     android:orientation="vertical"
                     android:layout_weight="2">
                     <TextView
+                        android:id="@+id/tv_TempatWisataAlamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Desa Kemiren, Kecamatan Glagah\nPhone: Tlp (0333) 412456\nJam buka : 24 jam\nwww.ijendiscovery.com"
+                        android:text=""
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_TempatWisataTelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Phone: Tlp (0333) 412456"
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_TempatWisataJamBuka"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Jam buka : 24 jam"
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_TempatWisataWebsite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
                         android:textColor="@color/colorBlack"/>
                 </LinearLayout>
             </LinearLayout>
@@ -786,6 +845,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
                 android:weightSum="5">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -797,15 +857,17 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_lokasi_terdekat_hotel"/>
                     <TextView
+                        android:id="@+id/tv_HotelNama"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="IJEN RESORT dan VILLAS"
+                        android:text=""
                         android:layout_marginTop="5dp"
                         android:textColor="@color/colorBlack"/>
                     <RatingBar
+                        android:id="@+id/rb_HotelRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/starRatingBar"/>
+                        style="@style/smallstarRatingBar"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -813,9 +875,34 @@
                     android:orientation="vertical"
                     android:layout_weight="2">
                     <TextView
+                        android:id="@+id/tv_HotelAlamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="JlRandu Agung, Licin, Banyuwangi\nPhone:(0333) 773 3338\nHarga: mulai Rp 1.600.000\nwww.ijendiscovery.com"
+                        android:text=""
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_HotelTelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_HotelJamBuka"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_HotelHarga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_HotelWebsite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
                         android:textColor="@color/colorBlack"/>
                 </LinearLayout>
             </LinearLayout>
@@ -823,6 +910,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
                 android:weightSum="5">
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -834,15 +922,17 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_lokasi_terdkat_restoran"/>
                     <TextView
+                        android:id="@+id/tv_RestaurantNama"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="WARUNG BU WIDI"
+                        android:text=""
                         android:layout_marginTop="5dp"
                         android:textColor="@color/colorBlack"/>
                     <RatingBar
+                        android:id="@+id/rb_RestaurantRating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="@style/starRatingBar"/>
+                        style="@style/smallstarRatingBar"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -850,10 +940,36 @@
                     android:orientation="vertical"
                     android:layout_weight="2">
                     <TextView
+                        android:id="@+id/tv_RestaurantAlamat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Jl Randu Agung, Licin, Banyuwangi\nPhone: +6281235384419\nJam buka: 07.00 - 22.00\nHarga: mulai Rp 10.000"
+                        android:text=""
                         android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_RestaurantTelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_RestaurantJamBuka"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_RestaurantHarga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorBlack"/>
+                    <TextView
+                        android:id="@+id/tv_RestaurantWebsite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/colorBlack"/>
+
                 </LinearLayout>
             </LinearLayout>
             <TextView
@@ -863,14 +979,10 @@
                 android:textColor="@color/colorOrange"
                 android:textStyle="italic"
                 android:textSize="16sp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="40dp"
+                android:layout_marginBottom="20dp"
                 android:text="Jangan meninggalkan apapun kecuali jejak,\nJangan mengambil apapun kecuali foto,\nJangan membunuh apapun kecuali waktu"/>
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="400dp" />
-
-
     </LinearLayout>
 </ScrollView>

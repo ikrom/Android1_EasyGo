@@ -1,11 +1,14 @@
 package tc.easygo;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,15 +52,6 @@ public class PopularDestinationActivity extends AppCompatActivity {
         //variable
         lvPopular = (ListView)findViewById(R.id.lvPopular);
 
-
-
-        /*lvPopular.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent myIntent = new Intent(PopularDestinationActivity.this, PopularDestinationDetailActivity.class);
-                myIntent.putExtra("test", "hello");
-                startActivity(myIntent);
-            }
-        });*/
         //image universal loder
         // Create default options which will be used for every
         //  displayImage(...) call if no options will be passed to this method
@@ -69,10 +63,6 @@ public class PopularDestinationActivity extends AppCompatActivity {
                 .defaultDisplayImageOptions(defaultOptions)
                 .build();
         ImageLoader.getInstance().init(config); // Do it on Application start
-
-
-
-
 
         //JSON
         new JSONTask().execute("http://navits.esy.es/index.php/services/getwisatapopuler");
@@ -111,7 +101,9 @@ public class PopularDestinationActivity extends AppCompatActivity {
                 String finalJson = buffer.toString();
 
                 JSONObject parentObject = new JSONObject(finalJson);
+                //cekLog(String.valueOf(parentObject));
                 JSONArray parentArray = parentObject.getJSONArray("data");
+
 
                 List<PopularModel> popularModelList = new ArrayList<>();
 
@@ -163,6 +155,25 @@ public class PopularDestinationActivity extends AppCompatActivity {
             lvPopular.setAdapter(adapter);
             // TODO need to set data to the list
         }
+    }
+    public void cekLog(String iniCek){
+        Log.d("asd", iniCek);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Delete entry")
+                .setMessage(iniCek)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // continue with delete
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // do nothing
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     public class PopularAdapter extends ArrayAdapter {

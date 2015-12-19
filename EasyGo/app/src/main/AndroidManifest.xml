@@ -54,6 +54,15 @@
             android:label="@string/title_activity_popular_destination_detail"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity android:name=".GalleryActivity" >
+        </activity>
+        <activity
+            android:name=".DetailImageActivity"
+            android:label="@string/title_activity_detail_image"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity android:name=".StaggeredGridActivity" >
+        </activity>
     </application>
 
 </manifest>

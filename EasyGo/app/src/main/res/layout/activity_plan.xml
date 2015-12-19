@@ -58,14 +58,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ini mana"
+                            android:text="Klenteng Hoo Tong Bio"
                             android:textColor="#fff"
                             android:textSize="20sp"
                             android:layout_marginBottom="5dp"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Atur tanggal dan waktu"
+                            android:text="21 Oktober 2015"
                             android:textColor="#fff"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -111,14 +111,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ini mana"
+                            android:text="Kawah Ijen"
                             android:textColor="#fff"
                             android:textSize="20sp"
                             android:layout_marginBottom="5dp"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Atur tanggal dan waktu"
+                            android:text="25 November 2015"
                             android:textColor="#fff"/>
                     </LinearLayout>
                 </LinearLayout>
