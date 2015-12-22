@@ -33,4 +33,5 @@
     <string name="title_activity_popular_destination_detail">PopularDestinationDetailActivity
     </string>
     <string name="title_activity_detail_image">DetailImageActivity</string>
+    <string name="title_activity_check_preference">CheckPreferenceActivity</string>
 </resources>
