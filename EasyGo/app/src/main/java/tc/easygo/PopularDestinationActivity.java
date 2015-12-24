@@ -119,7 +119,6 @@ public class PopularDestinationActivity extends AppCompatActivity {
                     popularModel.setGambar(finalObject.getString("gambar"));
 
 
-
                     //adding the final object in the list
                     popularModelList.add(popularModel);
 

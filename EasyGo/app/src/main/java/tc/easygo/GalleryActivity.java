@@ -11,19 +11,29 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import tc.easygo.adapter.ItemGridAdapter;
+import tc.easygo.connection.PostRequest;
 import tc.easygo.models.PopularModel;
 
-public class GalleryActivity extends AppCompatActivity {
+public class GalleryActivity extends AppCompatActivity implements AsyncResponse {
 
     public static String KEY_ITEM = "item";
-    private PopularModel item;
 
+    private String[] linkGambar;
     private String[] images = new String[]{
             "http://navits.esy.es/images/ijen1.png",
             "http://navits.esy.es/images/glry-1-2.png",
@@ -44,22 +54,21 @@ public class GalleryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Gallery");
 
-        //item = (PopularModel) getIntent().getSerializableExtra(KEY_ITEM);
+        String id = null;
 
-        Intent intent = getIntent();
 
-        String id = intent.getStringExtra("id");
-        //cekLog(id);
+        Bundle extras = getIntent().getExtras();
+        if (extras == null) {cekLog("Intent error");}
+        else {
+            id = extras.getString("id");
+            //cekLog(id);
+        }
 
-        gvItem = (GridView)findViewById(R.id.gv_item);
-        ItemGridAdapter itemGridAdapter = new ItemGridAdapter(GalleryActivity.this, images);
-        gvItem.setAdapter(itemGridAdapter);
-        gvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                DetailImageActivity.toDetailImageActivity(GalleryActivity.this, images[position]);
-            }
-        });
+        //Post Data
+        GetDataPost(id);
+        //cekLog(linkGambar.toString());
+
+
 
         ImageButton ibNavPreview = (ImageButton)findViewById(R.id.ib_NavPreview);
         ImageButton ibNavJelajah = (ImageButton)findViewById(R.id.ib_NavJelajah);
@@ -94,6 +103,56 @@ public class GalleryActivity extends AppCompatActivity {
         });
     }
 
+    private void GetDataPost(String idWisata) {
+        HashMap<String, String> registerParams = new HashMap<>();
+        registerParams.put("id", idWisata);
+
+        PostRequest tmp = new PostRequest(this, "http://navits.esy.es/index.php/services/", registerParams);
+        tmp.delegate = this;
+        tmp.execute("/getgallerywisatabyid");
+        return;
+    }
+
+    @Override
+    public void processFinish(String output) {
+        try {
+            JSONObject postParentObject = new JSONObject(output);
+            JSONArray parentArray = postParentObject.getJSONArray("data");
+
+            //String[] linkGambar;
+            ArrayList<String> linkGambarList = new ArrayList<String>();
+
+            //cekLog(String.valueOf(parentArray.length()));
+            for(int i=0; i<parentArray.length();i++){
+                JSONObject finalObject = parentArray.getJSONObject(i);
+                String ObjectRatingData = finalObject.getString("gambar");
+
+                linkGambarList.add(ObjectRatingData.toString());
+                //linkGambar[i] = String.valueOf(ObjectRatingData.toString());
+
+
+            }
+
+            /*ArrayList to Array Conversion */
+            String linkGambarString[] = new String[linkGambarList.size()];
+            for(int j =0;j<linkGambarList.size();j++){
+                linkGambarString[j] = linkGambarList.get(j);
+            }
+            SetGridView(linkGambarString);
+
+            //cekLog(linkGambar.toString());
+            //String[] linkGambarString = new String[linkGambarList.size()];
+            //linkGambarString = linkGambarList.toArray(linkGambarString);
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            //cekLog("Gangguan koneksi internet");
+            cekLog(String.valueOf(e));
+        }
+    }
+
     public void cekLog(String iniCek) {
         //Log.d("asd", iniCek);
 
@@ -112,5 +171,17 @@ public class GalleryActivity extends AppCompatActivity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+
+    public void SetGridView(final String[] linkGambar){
+        gvItem = (GridView)findViewById(R.id.gv_item);
+        ItemGridAdapter itemGridAdapter = new ItemGridAdapter(GalleryActivity.this, linkGambar);
+        gvItem.setAdapter(itemGridAdapter);
+        gvItem.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                DetailImageActivity.toDetailImageActivity(GalleryActivity.this, linkGambar[position]);
+            }
+        });
     }
 }

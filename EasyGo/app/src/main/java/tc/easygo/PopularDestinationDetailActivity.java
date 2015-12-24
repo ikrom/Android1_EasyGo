@@ -61,7 +61,7 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
 
         item = (PopularModel) getIntent().getSerializableExtra(KEY_ITEM);
 
-        String id = String.valueOf(item.getId());
+        final String id = String.valueOf(item.getId());
         String idUser = String.valueOf(1);
 
         //lvFasilitas = (ListView)findViewById(R.id.lv_Fasilitas);
@@ -118,9 +118,8 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PopularDestinationDetailActivity.this, GalleryActivity.class);
-                intent.putExtra(GalleryActivity.KEY_ITEM,item.getId());
+                intent.putExtra("id",id);
                 startActivity(intent);
-
             }
         });
 
@@ -162,62 +161,81 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
 
             //variable rating
             String ObjectRatingData = postFinalObject.getString("rating");
-            JSONObject postFinalObjectRatingData = new JSONObject(ObjectRatingData);
 
-            ratingPemandangan = (float)postFinalObjectRatingData.getDouble("pemandangan");
-            ratingKemudahanAkses = (float)postFinalObjectRatingData.getDouble("kemudahan_akses");
-            ratingFasilitas = (float)postFinalObjectRatingData.getDouble("fasilitas");
-            ratingPengelolaan = (float)postFinalObjectRatingData.getDouble("pengelolaan");
-            ratingHarga = (float)postFinalObjectRatingData.getDouble("harga");
+            if(!ObjectRatingData.equals("-")){
+                JSONObject postFinalObjectRatingData = new JSONObject(ObjectRatingData);
+
+                ratingPemandangan = (float)postFinalObjectRatingData.getDouble("pemandangan");
+                ratingKemudahanAkses = (float)postFinalObjectRatingData.getDouble("kemudahan_akses");
+                ratingFasilitas = (float)postFinalObjectRatingData.getDouble("fasilitas");
+                ratingPengelolaan = (float)postFinalObjectRatingData.getDouble("pengelolaan");
+                ratingHarga = (float)postFinalObjectRatingData.getDouble("harga");
+
+                ratingTotal = (float) postFinalObject.getDouble("rating_total");
+
+                //rating total
+                rbDetailRating.setRating(ratingTotal);
+                //rating detail
+                rbDetailPemandangan.setRating(ratingPemandangan);
+                rbDetailKemudahanAkses.setRating(ratingKemudahanAkses);
+                rbDetailFasilitas.setRating(ratingFasilitas);
+                rbDetailPengelolaan.setRating(ratingPengelolaan);
+                rbDetailHarga.setRating(ratingHarga);
+            }
+            else if (ObjectRatingData.equals("-")){
+                ratingTotal=0;
+                rbDetailRating.setRating(ratingTotal);
+            }
+
 
             //variable review
             String objectReview = postFinalObject.getString("review");
-            JSONObject reviewData = new JSONObject(objectReview);
-            String objectUser = reviewData.getString("user");
-            JSONObject userData = new JSONObject(objectUser);
-            //user
-            TextView tvReviewerNama = (TextView)findViewById(R.id.tv_ReviewerNama);
-            TextView tvReviewerKota = (TextView)findViewById(R.id.tv_ReviewerKota);
-            TextView tvReviewerNegara = (TextView)findViewById(R.id.tv_ReviewerNegara);
-            TextView tvReviewerJumlahReviewer = (TextView)findViewById(R.id.tv_ReviewerJumlahReview);
-            TextView tvReviewerJumlahReviewBermanfaat = (TextView)findViewById(R.id.tv_JumlahReviewBermanfaat);
+            if(!objectReview.equals("-")){
+                JSONObject reviewData = new JSONObject(objectReview);
+                String objectUser = reviewData.getString("user");
+                JSONObject userData = new JSONObject(objectUser);
 
-            String reviewerNama = userData.getString("nama");
-            String reviewerKota = userData.getString("kota");
-            String reviewerNegara = userData.getString("negara");
-            String reviewerJumlahReviewer = userData.getString("jumlah_review");
-            String reviewerJumlahReviewBermanfaat = userData.getString("jumlah_review_bermanfaat");
+                //user
+                TextView tvReviewerNama = (TextView)findViewById(R.id.tv_ReviewerNama);
+                TextView tvReviewerKota = (TextView)findViewById(R.id.tv_ReviewerKota);
+                TextView tvReviewerNegara = (TextView)findViewById(R.id.tv_ReviewerNegara);
+                TextView tvReviewerJumlahReviewer = (TextView)findViewById(R.id.tv_ReviewerJumlahReview);
+                TextView tvReviewerJumlahReviewBermanfaat = (TextView)findViewById(R.id.tv_JumlahReviewBermanfaat);
 
-            tvReviewerNama.setText(reviewerNama);
-            tvReviewerKota.setText(reviewerKota);
-            tvReviewerNegara.setText(reviewerNegara);
-            tvReviewerJumlahReviewer.setText(reviewerJumlahReviewer+" ulasan");
-            tvReviewerJumlahReviewBermanfaat.setText(reviewerJumlahReviewBermanfaat+" ulasan bermanfaat");
+                String reviewerNama = userData.getString("nama");
+                String reviewerKota = userData.getString("kota");
+                String reviewerNegara = userData.getString("negara");
+                String reviewerJumlahReviewer = userData.getString("jumlah_review");
+                String reviewerJumlahReviewBermanfaat = userData.getString("jumlah_review_bermanfaat");
 
-            //review
-            TextView tvReviewerJudul = (TextView)findViewById(R.id.tv_ReviewerJudul);
-            TextView tvReviewerTanggal = (TextView)findViewById(R.id.tv_ReviewerTanggal);
-            TextView tvReviewerDeskripsi = (TextView)findViewById(R.id.tv_ReviewerDeskripsi);
-            TextView tvReviewerBermanfaat = (TextView)findViewById(R.id.tv_ReviewerBermanfaat);
-            RatingBar rbReviewerRating = (RatingBar)findViewById(R.id.rb_ReviewerRating);
+                tvReviewerNama.setText(reviewerNama);
+                tvReviewerKota.setText(reviewerKota);
+                tvReviewerNegara.setText(reviewerNegara);
+                tvReviewerJumlahReviewer.setText(reviewerJumlahReviewer+" ulasan");
+                tvReviewerJumlahReviewBermanfaat.setText(reviewerJumlahReviewBermanfaat+" ulasan bermanfaat");
 
-            String reviewerJudul = reviewData.getString("judul");
-            String reviewerTanggal = reviewData.getString("tanggal");
-            String reviewerDeskripsi = reviewData.getString("deskripsi");
-            String reviewerJumlahReview = reviewData.getString("judul");
-            String reviewerBermanfaat = reviewData.getString("bermanfaat");
-            Float reviewerRating = (float)reviewData.getDouble("rating");
+                //review
+                TextView tvReviewerJudul = (TextView)findViewById(R.id.tv_ReviewerJudul);
+                TextView tvReviewerTanggal = (TextView)findViewById(R.id.tv_ReviewerTanggal);
+                TextView tvReviewerDeskripsi = (TextView)findViewById(R.id.tv_ReviewerDeskripsi);
+                TextView tvReviewerBermanfaat = (TextView)findViewById(R.id.tv_ReviewerBermanfaat);
+                RatingBar rbReviewerRating = (RatingBar)findViewById(R.id.rb_ReviewerRating);
 
-            tvReviewerJudul.setText(reviewerJudul);
-            tvReviewerTanggal.setText(reviewerTanggal);
-            tvReviewerDeskripsi.setText(reviewerDeskripsi);
-            tvReviewerBermanfaat.setText(reviewerBermanfaat);
-            rbReviewerRating.setRating(reviewerRating);
+                String reviewerJudul = reviewData.getString("judul");
+                String reviewerTanggal = reviewData.getString("tanggal");
+                String reviewerDeskripsi = reviewData.getString("deskripsi");
+                String reviewerJumlahReview = reviewData.getString("judul");
+                String reviewerBermanfaat = reviewData.getString("bermanfaat");
+                Float reviewerRating = (float)reviewData.getDouble("rating");
 
+                tvReviewerJudul.setText(reviewerJudul);
+                tvReviewerTanggal.setText(reviewerTanggal);
+                tvReviewerDeskripsi.setText(reviewerDeskripsi);
+                tvReviewerBermanfaat.setText(reviewerBermanfaat);
+                rbReviewerRating.setRating(reviewerRating);
+            }
 
-
-
-            //varoable tempat wisata terdekat
+            //variable tempat wisata terdekat
             String objectTempatWisata = postFinalObject.getString("tempat_wisata");
             JSONObject tempatWisataData = new JSONObject(objectTempatWisata);
 
@@ -299,7 +317,7 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
             tvRestaurantAlamat.setText(RestaurantAlamat);
             tvRestaurantTelp.setText("Phone: "+RestaurantTelp);
             tvRestaurantJamBuka.setText("Jam buka: "+RestaurantJamBuka);
-            tvRestaurantHarga.setText("Harga: "+RestaurantHarga);
+            tvRestaurantHarga.setText("Harga: " + RestaurantHarga);
             tvRestaurantWebsite.setText(RestaurantWebsite);
             rbRestaurantRating.setRating(RestaurantRating);
 
@@ -316,12 +334,12 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
             deskripsi = postFinalObject.getString("deskripsi");
             jumlahReview = postFinalObject.getString("jumlah_review");
 
-            ratingTotal = (float) postFinalObject.getDouble("rating_total");
+
 
             //setText
             tvNamaWisata.setText(namaWisata);
             tvKetinggian.setText(ketinggian);
-            tvKecamatan.setText("Kecamatan "+ kecamatan+", Banyuwangi");
+            tvKecamatan.setText("Kecamatan " + kecamatan + ", Banyuwangi");
             tvJenisWisata.setText(jenisWisata);
 
             tvJamBuka.setText(jamBuka);
@@ -332,14 +350,7 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
             tvDeskripsi.setText(deskripsi);
             tvJumlahReview.setText("Penilaian dari "+jumlahReview+" pengguna");
 
-            //rating total
-            rbDetailRating.setRating(ratingTotal);
-            //rating detail
-            rbDetailPemandangan.setRating(ratingPemandangan);
-            rbDetailKemudahanAkses.setRating(ratingKemudahanAkses);
-            rbDetailFasilitas.setRating(ratingFasilitas);
-            rbDetailPengelolaan.setRating(ratingPengelolaan);
-            rbDetailHarga.setRating(ratingHarga);
+
 
         } catch (JSONException e) {
             e.printStackTrace();

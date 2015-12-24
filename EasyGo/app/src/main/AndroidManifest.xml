@@ -63,6 +63,11 @@
         </activity>
         <activity android:name=".StaggeredGridActivity" >
         </activity>
+        <activity
+            android:name=".JelajahActivity"
+            android:label="@string/title_activity_jelajah"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>
