@@ -33,5 +33,9 @@
     <string name="title_activity_popular_destination_detail">PopularDestinationDetailActivity
     </string>
     <string name="title_activity_detail_image">DetailImageActivity</string>
+<<<<<<< HEAD
     <string name="title_activity_jelajah">JelajahActivity</string>
+=======
+    <string name="title_activity_check_preference">CheckPreferenceActivity</string>
+>>>>>>> 85b5e54edad82a536913b95675cd6f5459c7d641
 </resources>
