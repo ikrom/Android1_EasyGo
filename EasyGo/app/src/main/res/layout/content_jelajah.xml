@@ -8,7 +8,7 @@
     tools:context="tc.easygo.JelajahActivity"
     tools:showIn="@layout/activity_jelajah"
     android:orientation="vertical">
-    
+
     <ListView
         android:id="@+id/lv_Jelajah"
         android:layout_width="match_parent"
