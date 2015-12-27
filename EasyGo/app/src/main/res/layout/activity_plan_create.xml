@@ -37,6 +37,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
+                android:entries="@array/jenis_rencana"
+                android:prompt="@string/wisata_prompt"></Spinner>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
                 android:entries="@array/wisata_arrays"
                 android:prompt="@string/wisata_prompt"></Spinner>
 
@@ -94,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/orange_button"
                 android:text="Simpan"
                 android:textAllCaps="false"

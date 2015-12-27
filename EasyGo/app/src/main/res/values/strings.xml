@@ -2,6 +2,7 @@
     <string name="app_name">EasyGo</string>
     <string name="country_prompt">Pilih negara</string>
     <string name="gender_prompt">Pilih gender</string>
+    <string name="jenis_wisata_prompt">Pilih Jenis Wisata</string>
     <string name="wisata_prompt">Pilih wisata</string>
     <string name="event_prompt">Pilih event</string>
     <string-array name="country_arrays">
@@ -17,6 +18,10 @@
     <string-array name="gender_arrays">
         <item>Laki-laki</item>
         <item>Perempuan</item>
+    </string-array>
+    <string-array name="jenis_rencana">
+        <item>Tempat Wisata</item>
+        <item>Event</item>
     </string-array>
     <string-array name="wisata_arrays">
         <item>Pulau Merah</item>
