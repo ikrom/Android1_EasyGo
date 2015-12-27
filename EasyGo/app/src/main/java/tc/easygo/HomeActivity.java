@@ -18,6 +18,15 @@ public class HomeActivity extends AppCompatActivity {
         ImageView homePopular = (ImageView)findViewById(R.id.home_popular_destination);
         ImageView homeTips = (ImageView)findViewById(R.id.home_tips);
         ImageView homePlan = (ImageView)findViewById(R.id.home_plan);
+        final ImageView homeJelajah = (ImageView)findViewById(R.id.home_jelajah);
+
+        homeJelajah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,JelajahActivity.class);
+                startActivity(intent);
+            }
+        });
 
         homePopular.setOnClickListener(new View.OnClickListener() {
             @Override
