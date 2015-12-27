@@ -34,7 +34,7 @@ public class TipsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tips Travelling");
 
-        lvTipsItem = (ListView)findViewById(R.id.lv_tips_item);
+        lvTipsItem = (ListView)findViewById(R.id.lv_tips);
         tipsItem = new ArrayList<>();
 
         TipsModel tips = null;

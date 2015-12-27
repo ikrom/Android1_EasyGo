@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,15 +13,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +40,7 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.AbstractSequentialList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -152,7 +159,9 @@ public class PopularDestinationActivity extends AppCompatActivity {
             super.onPostExecute(result);
             PopularAdapter adapter = new PopularAdapter(getApplicationContext(), R.layout.row_popular, result);
             lvPopular.setAdapter(adapter);
+
             // TODO need to set data to the list
+
         }
     }
     public void cekLog(String iniCek){
@@ -189,39 +198,83 @@ public class PopularDestinationActivity extends AppCompatActivity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            if(convertView == null){
-                convertView = inflater.inflate(resource, null);
-            }
-            TextView tvId = (TextView)convertView.findViewById(R.id.tv_IdPopular);
-            ImageView ivPhoto= (ImageView)convertView.findViewById(R.id.iv_Photo);
-            TextView tvNama = (TextView)convertView.findViewById(R.id.tv_nama);
-            TextView tvJenisWisata= (TextView)convertView.findViewById(R.id.tv_JenisWisata);
-            RatingBar rbRataRating= (RatingBar)convertView.findViewById(R.id.rb_RataRating);
-            TextView tvJumlahReview= (TextView)convertView.findViewById(R.id.tv_JumlahReview);
-            ImageView ivClick = (ImageView)convertView.findViewById(R.id.iv_Click);
 
-            ivClick.setOnClickListener(new View.OnClickListener() {
+            ViewHolder holder = null;
+
+            if(convertView == null){
+                holder=new ViewHolder();
+                convertView = inflater.inflate(resource, null);
+
+                holder.tvId = (TextView)convertView.findViewById(R.id.tv_IdPopular);
+                holder.ivPhoto= (ImageView)convertView.findViewById(R.id.iv_Photo);
+                holder.tvNama = (TextView)convertView.findViewById(R.id.tv_nama);
+                holder.tvJenisWisata= (TextView)convertView.findViewById(R.id.tv_JenisWisata);
+                holder.rbRataRating= (RatingBar)convertView.findViewById(R.id.rb_RataRating);
+                holder.tvJumlahReview= (TextView)convertView.findViewById(R.id.tv_JumlahReview);
+                holder.rlPopularAll = (RelativeLayout)convertView.findViewById(R.id.rl_PopularAll);
+                convertView.setTag(holder);
+            }
+            else{
+                holder = (ViewHolder) convertView.getTag();
+            }
+
+            final ProgressBar pbPopular = (ProgressBar)convertView.findViewById(R.id.pb_popular);
+
+
+
+            // Then later, when you want to display image
+            ImageLoader.getInstance().displayImage(popularModelList.get(position).getGambar(), holder.ivPhoto, new ImageLoadingListener() {
                 @Override
-                public void onClick(View v) {
-                    Intent myIntent = new Intent(PopularDestinationActivity.this, PopularDestinationDetailActivity.class);
-                    PopularModel pmdl= popularModelList.get(position);
-                    myIntent.putExtra(PopularDestinationDetailActivity.KEY_ITEM, pmdl);
-                    startActivityForResult(myIntent,0);
+                public void onLoadingStarted(String imageUri, View view) {
+                    pbPopular.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                    pbPopular.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    pbPopular.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onLoadingCancelled(String imageUri, View view) {
+                    pbPopular.setVisibility(View.GONE);
                 }
             });
 
-            // Then later, when you want to display image
-            ImageLoader.getInstance().displayImage(popularModelList.get(position).getGambar(), ivPhoto);
-
-            tvId.setText("" + popularModelList.get(position).getId());
-            tvNama.setText(popularModelList.get(position).getNama());
-            tvJenisWisata.setText(popularModelList.get(position).getJenisWisata());
-            tvJumlahReview.setText(popularModelList.get(position).getJumlahReview() + " ulasan");
+            holder.tvId.setText("" + popularModelList.get(position).getId());
+            holder.tvNama.setText(popularModelList.get(position).getNama());
+            holder.tvJenisWisata.setText(popularModelList.get(position).getJenisWisata());
+            holder.tvJumlahReview.setText(popularModelList.get(position).getJumlahReview() + " ulasan");
 
             //rating bar
-            rbRataRating.setRating(popularModelList.get(position).getRataRating());
+            holder.rbRataRating.setRating(popularModelList.get(position).getRataRating());
+
+
+            holder.rlPopularAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent myIntent = new Intent(PopularDestinationActivity.this, PopularDestinationDetailActivity.class);
+                    PopularModel pmdl = popularModelList.get(position);
+                    myIntent.putExtra(PopularDestinationDetailActivity.KEY_ITEM, pmdl);
+                    startActivityForResult(myIntent, 0);
+                }
+            });
 
             return convertView;
+        }
+
+        class ViewHolder{
+            private TextView tvId;
+            private ImageView ivPhoto;
+            private TextView tvNama;
+            private TextView tvJenisWisata;
+            private RatingBar rbRataRating;
+            private TextView tvJumlahReview;
+            private RelativeLayout rlPopularAll;
         }
     }
     private void shareIt(){

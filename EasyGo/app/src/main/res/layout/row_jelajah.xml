@@ -10,38 +10,39 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/rl_all"
+            android:id="@+id/rl_JelajahAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="415dp"
                 android:orientation="vertical">
 
-
-                <ImageView
-                    android:id="@+id/iv_Photo"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:scaleType="fitXY" />
+                    android:layout_height="275dp">
+                    <ImageView
+                        android:id="@+id/iv_Photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+                    <ProgressBar
+                        android:id="@+id/pb_Jelajah"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
 
+                </FrameLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
                     android:background="@color/colorYellow">
-
-                    <ImageView
-                        android:id="@+id/iv_Click"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
                         android:orientation="vertical"
                         android:paddingBottom="10dp"

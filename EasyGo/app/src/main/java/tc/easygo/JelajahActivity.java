@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,13 +16,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,6 +55,8 @@ public class JelajahActivity extends AppCompatActivity {
 
         //variable
         lvPopular = (ListView) findViewById(R.id.lvPopular);
+        SearchView search = (SearchView)findViewById(R.id.sv_jelajah);
+
 
         //image universal loder
         // Create default options which will be used for every
@@ -106,6 +113,8 @@ public class JelajahActivity extends AppCompatActivity {
 
 
                 List<PopularModel> popularModelList = new ArrayList<>();
+
+                List<PopularModel> filteredPopularModelList = new ArrayList<>();
 
                 for (int i = 0; i < parentArray.length(); i++) {
                     JSONObject finalObject = parentArray.getJSONObject(i);
@@ -191,19 +200,28 @@ public class JelajahActivity extends AppCompatActivity {
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = inflater.inflate(resource, null);
-            }
-            RelativeLayout all = (RelativeLayout) convertView.findViewById(R.id.rl_all);
-            TextView tvId = (TextView) convertView.findViewById(R.id.tv_IdPopular);
-            ImageView ivPhoto = (ImageView) convertView.findViewById(R.id.iv_Photo);
-            TextView tvNama = (TextView) convertView.findViewById(R.id.tv_nama);
-            TextView tvJenisWisata = (TextView) convertView.findViewById(R.id.tv_JenisWisata);
-            RatingBar rbRataRating = (RatingBar) convertView.findViewById(R.id.rb_RataRating);
-            TextView tvJumlahReview = (TextView) convertView.findViewById(R.id.tv_JumlahReview);
-            ImageView ivClick = (ImageView) convertView.findViewById(R.id.iv_Click);
 
-            ivClick.setOnClickListener(new View.OnClickListener() {
+            ViewHolder holder = null;
+
+            if (convertView == null) {
+                holder=new ViewHolder();
+                convertView = inflater.inflate(resource, null);
+
+                holder.ivPhoto= (ImageView)convertView.findViewById(R.id.iv_Photo);
+                holder.tvNama = (TextView)convertView.findViewById(R.id.tv_nama);
+                holder.tvJenisWisata= (TextView)convertView.findViewById(R.id.tv_JenisWisata);
+                holder.rbRataRating= (RatingBar)convertView.findViewById(R.id.rb_RataRating);
+                holder.tvJumlahReview= (TextView)convertView.findViewById(R.id.tv_JumlahReview);
+                holder.rlJelajahAll = (RelativeLayout) convertView.findViewById(R.id.rl_JelajahAll);
+                convertView.setTag(holder);
+            }
+            else{
+                holder = (ViewHolder) convertView.getTag();
+            }
+            final ProgressBar pbJelajah = (ProgressBar)convertView.findViewById(R.id.pb_Jelajah);
+
+
+            holder.rlJelajahAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent myIntent = new Intent(JelajahActivity.this, PopularDestinationDetailActivity.class);
@@ -214,21 +232,49 @@ public class JelajahActivity extends AppCompatActivity {
             });
 
             // Then later, when you want to display image
-            ImageLoader.getInstance().displayImage(popularModelList.get(position).getGambar(), ivPhoto);
+            ImageLoader.getInstance().displayImage(popularModelList.get(position).getGambar(), holder.ivPhoto, new ImageLoadingListener() {
+                @Override
+                public void onLoadingStarted(String imageUri, View view) {
+                    pbJelajah.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                    pbJelajah.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    pbJelajah.setVisibility(View.GONE);
+                }
+
+                @Override
+                public void onLoadingCancelled(String imageUri, View view) {
+                    pbJelajah.setVisibility(View.GONE);
+                }
+            });
 
             //tvId.setText("" + popularModelList.get(position).getId());
-            tvNama.setText(popularModelList.get(position).getNama());
-            tvJenisWisata.setText(popularModelList.get(position).getJenisWisata());
-            tvJumlahReview.setText(popularModelList.get(position).getJumlahReview() + " ulasan");
+            holder.tvNama.setText(popularModelList.get(position).getNama());
+            holder.tvJenisWisata.setText(popularModelList.get(position).getJenisWisata());
+            holder.tvJumlahReview.setText(popularModelList.get(position).getJumlahReview() + " ulasan");
 
             //rating bar
-            rbRataRating.setRating(popularModelList.get(position).getRataRating());
+            holder.rbRataRating.setRating(popularModelList.get(position).getRataRating());
 
             //filter 3 destinasi populer
             if (popularModelList.get(position).getId() == 1) {
-                all.setVisibility(View.GONE);
+                holder.rlJelajahAll.setVisibility(View.GONE);
             }
             return convertView;
+        }
+        class ViewHolder{
+            private ImageView ivPhoto;
+            private TextView tvNama;
+            private TextView tvJenisWisata;
+            private RatingBar rbRataRating;
+            private TextView tvJumlahReview;
+            private RelativeLayout rlJelajahAll;
         }
     }
 
