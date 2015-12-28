@@ -26,13 +26,14 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse{
     SharedPreferences sharedPreferences;
 
     public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Username = "Username";
-    public static final String Password = "Password";
-    public static final String Email = "Email";
-    public static final String Nama = "Nama";
-    public static final String Status = "Status";
+    public static final String Id = "id";
+    public static final String Username = "username";
+    public static final String Password = "password";
+    public static final String Email = "email";
+    public static final String Nama = "nama";
+    public static final String Status = "status";
 
-    private String getUsername, getNama, getEmail;
+    private String getIdUser, getUsername, getNama, getEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +94,13 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse{
             JSONObject postFinalObject = new JSONObject(Objectdata);
 
             //variabel login
+            getIdUser = (String)postFinalObject.getString("id");
             getUsername = (String)postFinalObject.getString("username");
             getNama = (String)postFinalObject.getString("nama");
             getEmail = (String)postFinalObject.getString("email");
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(Id, getIdUser);
             editor.putString(Username, getUsername);
             editor.putString(Password, pass.getText().toString());
             editor.putString(Nama, getNama);

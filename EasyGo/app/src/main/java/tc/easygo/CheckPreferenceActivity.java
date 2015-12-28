@@ -23,6 +23,11 @@ public class CheckPreferenceActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        //HAPUS
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+        //BATAS HAPUS
         CheckPreference();
 
     }

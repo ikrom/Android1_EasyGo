@@ -38,21 +38,28 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:entries="@array/jenis_rencana"
-                android:prompt="@string/wisata_prompt"></Spinner>
+                android:prompt="@string/wisata_prompt"
+                android:focusable="false"
+                android:id="@+id/jenis_rencana"></Spinner>
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:entries="@array/wisata_arrays"
-                android:prompt="@string/wisata_prompt"></Spinner>
+                android:prompt="@string/wisata_prompt"
+                android:id="@+id/tujuan_wisata"
+                android:clickable="false"
+                android:visibility="gone"></Spinner>
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:entries="@array/event_arrays"
-                android:prompt="@string/event_prompt"></Spinner>
+                android:prompt="@string/event_prompt"
+                android:id="@+id/event"
+                android:visibility="gone"></Spinner>
 
             <TextView
                 android:layout_width="match_parent"
@@ -65,7 +72,8 @@
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/catatan" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -93,7 +101,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:text="Ingatkan Saya" />
+                android:text="Ingatkan Saya"
+                android:id="@+id/ingatkan_saya" />
 
             <Button
                 android:id="@+id/btn_simpan"
