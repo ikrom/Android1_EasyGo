@@ -97,6 +97,7 @@
             android:layout_marginTop="10dp"
             android:text="Buat Akun"
             android:textColor="#E58141"
-            android:textSize="17dp" />
+            android:textSize="17dp"
+            android:layout_marginBottom="20dp" />
     </LinearLayout>
 </ScrollView>

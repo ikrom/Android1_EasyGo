@@ -112,8 +112,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse{
             startActivity(intent);
         } catch (JSONException e) {
             e.printStackTrace();
-            cekLog("Username atau Password salah.");
-            //cekLog(String.valueOf(e));
+            //cekLog("Username atau Password salah.");
+            cekLog(String.valueOf(e));
         }
     }
 
