@@ -21,13 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
 
-        
-        <activity android:name=".SplashAcitivity"></activity>
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".HomeActivity"></activity>
         <activity android:name=".TipsActivity"></activity>
         <activity android:name=".PlanActivity"></activity>
         <activity android:name=".DetailTipsActivity"></activity>
@@ -39,19 +33,7 @@
             android:label="@string/title_activity_maps"
             android:theme="@style/AppTheme">
         </activity>
-=======
-        <activity android:name=".TipsActivity" />
-        <activity android:name=".PlanActivity" />
-        <activity android:name=".DetailTipsActivity" />
-        <activity android:name=".PlanCreateActivity" />
-        <activity android:name=".ProfilEditTag" />
-        <activity android:name=".ProfilOtherActivity" />
-        <activity android:name=".PopularDestinationActivity" />
->>>>>>> ikrom
-        <activity
-            android:name=".TipsItemActivity"
-            android:label="@string/title_activity_tips_item"
-            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".TipsItemDetail"
             android:label="@string/title_activity_tips_item_detail"
