@@ -17,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
 
         ImageView homePopular = (ImageView)findViewById(R.id.home_popular_destination);
         ImageView homeTips = (ImageView)findViewById(R.id.home_tips);
+        ImageView homeAgenda = (ImageView)findViewById(R.id.home_agenda);
         ImageView homePlan = (ImageView)findViewById(R.id.home_plan);
         final ImageView homeJelajah = (ImageView)findViewById(R.id.home_jelajah);
 
@@ -48,6 +49,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this,TipsActivity.class);
+                startActivity(intent);
+            }
+        });
+        homeAgenda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,CalenderActivity.class);
                 startActivity(intent);
             }
         });

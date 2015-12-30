@@ -79,7 +79,8 @@
                     android:layout_height="fill_parent"
                     android:background="@drawable/icon_agenda_event"
                     android:layout_weight="1"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:id="@+id/home_agenda"/>
                 <ImageView
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
