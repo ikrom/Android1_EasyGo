@@ -10,57 +10,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
         <TextView
             android:id="@+id/tv_title_tips"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="hello"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text=""
             android:textColor="#e58141"
             android:textStyle="bold"
             android:textSize="16sp"
             android:layout_marginBottom="20dp"/>
-        <LinearLayout
+        <ListView
+            android:id="@+id/lv_detail_tips"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_tips"
-                android:layout_weight="3"
-                android:layout_marginRight="20dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Pilih item pakaian yang serbaguna untuk aktifitas travelingmu"
-                android:layout_weight="1"
-                android:textColor="#000"
-                android:gravity="center_vertical"
-                android:textStyle="bold"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_tips"
-                android:layout_weight="3"
-                android:layout_marginRight="20dp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Pilih warna dan motif pakaian yang mudah dipadu padankan"
-                android:layout_weight="1"
-                android:textColor="#000"
-                android:gravity="center_vertical"
-                android:textStyle="bold"/>
-        </LinearLayout>
-
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:divider="@null"
+            android:dividerHeight="0dp">
+        </ListView>
     </LinearLayout>
 </RelativeLayout>

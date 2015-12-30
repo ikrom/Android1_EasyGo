@@ -17,6 +17,7 @@ import tc.easygo.R;
  * Created by ikromaulia on 12/18/2015.
  */
 public class ItemGridAdapter extends BaseAdapter {
+    // params
     String[] items;
     Activity activity;
 

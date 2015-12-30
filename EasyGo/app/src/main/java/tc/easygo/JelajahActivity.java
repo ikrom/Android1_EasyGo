@@ -71,7 +71,7 @@ public class JelajahActivity extends AppCompatActivity {
         ImageLoader.getInstance().init(config); // Do it on Application start
 
         //JSON
-        new JSONTask().execute("http://navits.esy.es/index.php/services/getwisatapopuler");
+        new JSONTask().execute("http://navits.esy.es/index.php/services/getjelajah");
 
         //Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -262,10 +262,6 @@ public class JelajahActivity extends AppCompatActivity {
             //rating bar
             holder.rbRataRating.setRating(popularModelList.get(position).getRataRating());
 
-            //filter 3 destinasi populer
-            if (popularModelList.get(position).getId() == 1) {
-                holder.rlJelajahAll.setVisibility(View.GONE);
-            }
             return convertView;
         }
         class ViewHolder{

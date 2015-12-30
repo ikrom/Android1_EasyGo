@@ -42,5 +42,6 @@
     <string name="title_activity_jelajah">JelajahActivity</string>
 
     <string name="title_activity_check_preference">CheckPreferenceActivity</string>
+    <string name="title_activity_calender">CalenderActivity</string>
 
 </resources>
