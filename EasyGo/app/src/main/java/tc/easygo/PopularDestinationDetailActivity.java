@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Rating;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -15,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
+
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +26,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import tc.easygo.adapter.FasilitasAdapter;
 import tc.easygo.connection.PostRequest;
@@ -48,6 +55,10 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
     private ListView lvFasilitas;
     private ArrayList<FasilitasModel> fasilitasItem;
 
+    /*slide show*/
+    ArrayList<String> gambarList;
+    ViewFlipper viewFlipper;
+
     private TextView tvNamaWisata,tvKetinggian,tvKecamatan,tvJenisWisata,tvJamBuka,tvHarga,tvWaktuTerbaik,tvDitempuhMenggunakan,tvDurasiRute,tvDeskripsi,tvJumlahReview;
     private RatingBar rbDetailRating, rbDetailPemandangan, rbDetailKemudahanAkses,rbDetailFasilitas, rbDetailPengelolaan, rbDetailHarga;
     private String cek,hotelJambuka,namaWisata,ketinggian,kecamatan,jenisWisata,jamBuka,harga,waktuTerbaik,ditempuhMenggunakan,durasiRute,deskripsi,jumlahReview;
@@ -59,10 +70,32 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
         setContentView(R.layout.activity_popular_destination_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        /*slideshow*/
+        viewFlipper = (ViewFlipper) findViewById(R.id.flipper);
+        gambarList = new ArrayList<String>();
+        // handler to set duration and to upate animation
+        final Handler mHandler = new Handler();
+        // Create runnable for posting
+        final Runnable mUpdateResults = new Runnable() {
+            public void run() {
+                AnimateandSlideShow();
+            }
+        };
+        int delay = 500;
+        int period = 4000;
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+
+            public void run() {
+                mHandler.post(mUpdateResults);
+            }
+        }, delay, period);
+
+
         item = (PopularModel) getIntent().getSerializableExtra(KEY_ITEM);
 
         final String id = String.valueOf(item.getId());
-        String idUser = String.valueOf(1);
+        final String idUser = String.valueOf(1);
 
         //lvFasilitas = (ListView)findViewById(R.id.lv_Fasilitas);
 
@@ -89,12 +122,6 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
         getSupportActionBar().setTitle("Destinasi Populer");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //JSON
-        //new PopularDestinationActivity.JSONTask().execute("http://navits.esy.es/index.php/services/getwisatapopuler");
-
-
-        ImageView ivSlideShow = (ImageView) findViewById(R.id.iv_SlideShow);
-        //ivSlideShow.setImageURI("http://s24.postimg.org/i8wloq3ud/foto_1.jpg");
         ImageButton ibNavPlan = (ImageButton) findViewById(R.id.ib_NavPlan);
         ImageButton ibNavTips = (ImageButton) findViewById(R.id.ib_NavTips);
         ImageButton ibNavGallery = (ImageButton) findViewById(R.id.ib_NavGallery);
@@ -103,6 +130,7 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PopularDestinationDetailActivity.this, PlanActivity.class);
+                intent.putExtra("id_user",idUser);
                 startActivity(intent);
             }
         });
@@ -118,7 +146,12 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(PopularDestinationDetailActivity.this, GalleryActivity.class);
-                intent.putExtra("id",id);
+                Bundle bund = new Bundle();
+
+                bund.putString("id",id);
+                bund.putString("id_user",idUser);
+
+                intent.putExtras(bund);
                 startActivity(intent);
             }
         });
@@ -321,6 +354,22 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
             tvRestaurantWebsite.setText(RestaurantWebsite);
             rbRestaurantRating.setRating(RestaurantRating);
 
+            //variabel gambar
+            JSONArray parentArrayGambar = postFinalObject.getJSONArray("gambar");
+            for(int i=0;i<parentArrayGambar.length();i++){
+                JSONObject finalObjectGambarList = parentArrayGambar.getJSONObject(i);
+                String ObjectGambarList = finalObjectGambarList.getString("link");
+
+                gambarList.add(ObjectGambarList.toString());
+            }
+            /*ArrayList to Array Conversion */
+            String linkGambarString[] = new String[gambarList.size()];
+            for(int j =0;j<gambarList.size();j++){
+                linkGambarString[j] = gambarList.get(j);
+            }
+            //cekLog(gambarList.toString());
+            setFlipperImage( gambarList);
+
             //variable getString
             namaWisata = postFinalObject.getString("nama");
             ketinggian = postFinalObject.getString("ketinggian");
@@ -377,6 +426,23 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+    }
+    private void setFlipperImage(ArrayList<String> actorsList) {
+
+        for(int i=0;i<actorsList.size();i++){
+            Log.i("Set Filpper Called", actorsList.get(i).toString()+"");
+            ImageView image = new ImageView(getApplicationContext());
+            // image.setBackgroundResource(res);
+            Picasso.with(PopularDestinationDetailActivity.this)
+                    .load(actorsList.get(i).toString())
+                    .placeholder(R.mipmap.ic_launcher)
+                    .error(R.mipmap.ic_launcher)
+                    .into(image);
+            viewFlipper.addView(image);
+        }
+    }
+    private void AnimateandSlideShow() {
+        viewFlipper.showNext();
     }
     //get response
         /*String postFinalJson = output.toString();

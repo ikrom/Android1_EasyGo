@@ -11,7 +11,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import tc.easygo.R;
-import tc.easygo.TipsModel;
 import tc.easygo.models.FasilitasModel;
 
 /**

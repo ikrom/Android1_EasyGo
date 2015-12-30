@@ -34,14 +34,6 @@ public class GalleryActivity extends AppCompatActivity implements AsyncResponse 
     public static String KEY_ITEM = "item";
 
     private String[] linkGambar;
-    private String[] images = new String[]{
-            "http://navits.esy.es/images/ijen1.png",
-            "http://navits.esy.es/images/glry-1-2.png",
-            "http://navits.esy.es/images/glry-1-3.png",
-            "http://navits.esy.es/images/glry-1-4.png",
-            "http://navits.esy.es/images/glry-1-4.png",
-            "http://navits.esy.es/images/glry-1-1.png"
-    };
 
     private GridView gvItem;
 
@@ -53,22 +45,27 @@ public class GalleryActivity extends AppCompatActivity implements AsyncResponse 
         Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Gallery");
-
+/*
         String id = null;
+        String idUser = null;
 
 
         Bundle extras = getIntent().getExtras();
         if (extras == null) {cekLog("Intent error");}
         else {
-            id = extras.getString("id");
+            id = extras.getString(id);
+            cekLog(id);
+            idUser = extras.getString(idUser);
             //cekLog(id);
-        }
+        }*/
+
+        Bundle getBundle = getIntent().getExtras();
+
+        String id = getBundle.getString("id");
+        final String idUser = getBundle.getString("id_user");
 
         //Post Data
         GetDataPost(id);
-        //cekLog(linkGambar.toString());
-
-
 
         ImageButton ibNavPreview = (ImageButton)findViewById(R.id.ib_NavPreview);
         ImageButton ibNavJelajah = (ImageButton)findViewById(R.id.ib_NavJelajah);
@@ -91,6 +88,7 @@ public class GalleryActivity extends AppCompatActivity implements AsyncResponse 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(GalleryActivity.this, PlanActivity.class);
+                intent.putExtra("id_user", idUser);
                 startActivity(intent);
             }
         });
@@ -129,15 +127,14 @@ public class GalleryActivity extends AppCompatActivity implements AsyncResponse 
 
                 linkGambarList.add(ObjectRatingData.toString());
                 //linkGambar[i] = String.valueOf(ObjectRatingData.toString());
-
-
             }
-
+            //cekLog(linkGambarList.toString());
             /*ArrayList to Array Conversion */
             String linkGambarString[] = new String[linkGambarList.size()];
             for(int j =0;j<linkGambarList.size();j++){
                 linkGambarString[j] = linkGambarList.get(j);
             }
+            //cekLog(linkGambarString.toString());
             SetGridView(linkGambarString);
 
             //cekLog(linkGambar.toString());

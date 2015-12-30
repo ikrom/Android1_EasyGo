@@ -64,11 +64,16 @@
                 android:background="@drawable/nav_tips" />
         </LinearLayout>
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/iv_SlideShow"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@drawable/destinasi_populer_ijen" />
+            />-->
+        <ViewFlipper
+            android:id="@+id/flipper"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"/>
 
         <LinearLayout
             android:layout_width="match_parent"

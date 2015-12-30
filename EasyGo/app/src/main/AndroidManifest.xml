@@ -10,9 +10,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".SplashAcitivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+<<<<<<< HEAD
 
         
         <activity android:name=".SplashAcitivity"></activity>
@@ -30,39 +39,41 @@
             android:label="@string/title_activity_maps"
             android:theme="@style/AppTheme">
         </activity>
+=======
+        <activity android:name=".TipsActivity" />
+        <activity android:name=".PlanActivity" />
+        <activity android:name=".DetailTipsActivity" />
+        <activity android:name=".PlanCreateActivity" />
+        <activity android:name=".ProfilEditTag" />
+        <activity android:name=".ProfilOtherActivity" />
+        <activity android:name=".PopularDestinationActivity" />
+>>>>>>> ikrom
         <activity
             android:name=".TipsItemActivity"
             android:label="@string/title_activity_tips_item"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".TipsItemDetail"
             android:label="@string/title_activity_tips_item_detail"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".PopularDestinationDetailActivity"
             android:label="@string/title_activity_popular_destination_detail"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".GalleryActivity"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".GalleryActivity" />
         <activity
             android:name=".DetailImageActivity"
             android:label="@string/title_activity_detail_image"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".StaggeredGridActivity"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".StaggeredGridActivity" />
         <activity
             android:name=".CheckPreferenceActivity"
             android:label="@string/title_activity_check_preference"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".JelajahActivity"
             android:label="@string/title_activity_jelajah"
-            android:theme="@style/AppTheme" >
-        </activity>
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

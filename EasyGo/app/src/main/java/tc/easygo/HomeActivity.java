@@ -10,6 +10,9 @@ import android.widget.ImageView;
 
 public class HomeActivity extends AppCompatActivity {
 
+    //id user manual
+    String id_user = String.valueOf(1);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this,PlanActivity.class);
+                intent.putExtra("id_user",id_user);
                 startActivity(intent);
             }
         });

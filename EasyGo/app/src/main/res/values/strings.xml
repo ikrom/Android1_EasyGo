@@ -42,6 +42,7 @@
     <string name="title_activity_jelajah">JelajahActivity</string>
 
     <string name="title_activity_check_preference">CheckPreferenceActivity</string>
+<<<<<<< HEAD
     <string name="title_activity_maps">CariRutePerjalanan</string>
 
 
@@ -52,5 +53,8 @@
         <item>Taman Nasional Alas Purwo</item>
         <item>Virdes Batik Gallery</item>
     </string-array>
+=======
+    <string name="title_activity_calender">CalenderActivity</string>
+>>>>>>> ikrom
 
 </resources>
