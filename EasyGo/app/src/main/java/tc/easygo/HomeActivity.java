@@ -18,6 +18,7 @@ public class HomeActivity extends AppCompatActivity {
         ImageView homePopular = (ImageView)findViewById(R.id.home_popular_destination);
         ImageView homeTips = (ImageView)findViewById(R.id.home_tips);
         ImageView homePlan = (ImageView)findViewById(R.id.home_plan);
+        ImageView homePeta = (ImageView)findViewById(R.id.home_peta);
         final ImageView homeJelajah = (ImageView)findViewById(R.id.home_jelajah);
 
         homeJelajah.setOnClickListener(new View.OnClickListener() {
@@ -32,6 +33,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this,PopularDestinationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        homePeta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,MapsActivity.class);
                 startActivity(intent);
             }
         });

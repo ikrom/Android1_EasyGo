@@ -13,6 +13,8 @@
         <activity android:name=".LoginActivity">
 
         </activity>
+
+        
         <activity android:name=".SplashAcitivity"></activity>
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".ProfileActivity"></activity>
@@ -24,6 +26,10 @@
         <activity android:name=".ProfilEditTag"></activity>
         <activity android:name=".ProfilOtherActivity"></activity>
         <activity android:name=".PopularDestinationActivity"></activity>
+        <activity android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:theme="@style/AppTheme">
+        </activity>
         <activity
             android:name=".TipsItemActivity"
             android:label="@string/title_activity_tips_item"
