@@ -30,7 +30,7 @@
             android:theme="@style/AppTheme" />
 =======
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".SplashAcitivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ProfileActivity" />
@@ -41,20 +41,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".TipsActivity"></activity>
-        <activity android:name=".PlanActivity"></activity>
-        <activity android:name=".DetailTipsActivity"></activity>
-        <activity android:name=".PlanCreateActivity"></activity>
-        <activity android:name=".ProfilEditTag"></activity>
-        <activity android:name=".ProfilOtherActivity"></activity>
-        <activity android:name=".PopularDestinationActivity"></activity>
-        <activity android:name=".MapsActivity"
+        <activity android:name=".TipsActivity" />
+        <activity android:name=".PlanActivity" />
+        <activity android:name=".DetailTipsActivity" />
+        <activity android:name=".PlanCreateActivity" />
+        <activity android:name=".ProfilEditTag" />
+        <activity android:name=".ProfilOtherActivity" />
+        <activity android:name=".PopularDestinationActivity" />
+        <activity
+            android:name=".MapsActivity"
             android:label="@string/title_activity_maps"
+<<<<<<< HEAD
             android:theme="@style/AppTheme">
         </activity>
 
 >>>>>>> 8f0420e46900b872157f724e96928b8da4b06820
+=======
+            android:theme="@style/AppTheme"></activity>
+>>>>>>> b35c94131004f2fbd61cf58fcdb2435f227acebe
         <activity
             android:name=".TipsItemDetail"
             android:label="@string/title_activity_tips_item_detail"
@@ -72,6 +76,7 @@
         <activity
             android:name=".CheckPreferenceActivity"
             android:label="@string/title_activity_check_preference"
+<<<<<<< HEAD
 <<<<<<< HEAD
             android:theme="@style/AppTheme" >
             <intent-filter>
@@ -96,6 +101,14 @@
             android:label="@string/title_activity_jelajah"
             android:theme="@style/AppTheme"></activity>
 >>>>>>> 8f0420e46900b872157f724e96928b8da4b06820
+=======
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".JelajahActivity"
+            android:label="@string/title_activity_jelajah"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".GalleryHome"></activity>
+>>>>>>> b35c94131004f2fbd61cf58fcdb2435f227acebe
     </application>
 
 </manifest>

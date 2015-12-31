@@ -122,9 +122,18 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
         getSupportActionBar().setTitle("Destinasi Populer");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        ImageButton ibNavMap = (ImageButton) findViewById(R.id.ib_NavMap);
         ImageButton ibNavPlan = (ImageButton) findViewById(R.id.ib_NavPlan);
         ImageButton ibNavTips = (ImageButton) findViewById(R.id.ib_NavTips);
         ImageButton ibNavGallery = (ImageButton) findViewById(R.id.ib_NavGallery);
+
+        ibNavMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PopularDestinationDetailActivity.this, MapsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ibNavPlan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -366,6 +375,7 @@ public class PopularDestinationDetailActivity extends AppCompatActivity implemen
             String linkGambarString[] = new String[gambarList.size()];
             for(int j =0;j<gambarList.size();j++){
                 linkGambarString[j] = gambarList.get(j);
+                linkGambarString[j]=linkGambarString[j].replace(" ","");
             }
             //cekLog(gambarList.toString());
             setFlipperImage( gambarList);
