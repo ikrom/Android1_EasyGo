@@ -23,12 +23,21 @@ public class HomeActivity extends AppCompatActivity {
         ImageView homeAgenda = (ImageView)findViewById(R.id.home_agenda);
         ImageView homePlan = (ImageView)findViewById(R.id.home_plan);
         ImageView homePeta = (ImageView)findViewById(R.id.home_peta);
+        ImageView homeGallery = (ImageView)findViewById(R.id.home_gallery);
         final ImageView homeJelajah = (ImageView)findViewById(R.id.home_jelajah);
 
         homeJelajah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this,JelajahActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        homeGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, GalleryHomeActivity.class);
                 startActivity(intent);
             }
         });

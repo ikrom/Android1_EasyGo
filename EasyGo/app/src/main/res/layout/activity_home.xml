@@ -56,6 +56,7 @@
             android:layout_weight="1"
             android:orientation="horizontal">
                 <ImageView
+                    android:id="@+id/home_gallery"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@drawable/icon_galeri"

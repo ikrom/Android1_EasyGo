@@ -11,10 +11,12 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
@@ -22,9 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.etsy.android.grid.StaggeredGridView;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
@@ -43,9 +43,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tc.easygo.adapter.ItemGridAdapter;
+import tc.easygo.models.GalleryAllModel;
 import tc.easygo.models.PopularModel;
 
-public class GalleryHome extends AppCompatActivity {
+public class GalleryHomeActivity extends AppCompatActivity {
 
     private StaggeredGridView staggeredGridView;
     private String[] items = new String[]{
@@ -66,42 +67,30 @@ public class GalleryHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery_home);
 
-        //toolbar
+        //Toolbar
         Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Gallery");
 
-        //image universal loder
-        // Create default options which will be used for every
-        //  displayImage(...) call if no options will be passed to this method
-        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
-                .build();
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
-                .defaultDisplayImageOptions(defaultOptions)
-                .build();
-        ImageLoader.getInstance().init(config); // Do it on Application start
+        staggeredGridView = (StaggeredGridView) findViewById(R.id.gv_staggered);
 
         //JSON
-        //new JSONTask().execute("http://navits.esy.es/index.php/services/getallgallery");
-
-        staggeredGridView = (StaggeredGridView)findViewById(R.id.gv_staggered);
-        ItemGridAdapter itemGridAdapter = new ItemGridAdapter(GalleryHome.this, items);
+        new JSONTask().execute("http://navits.esy.es/index.php/services/getallgallery");
+        /*
+        ItemGridAdapter itemGridAdapter = new ItemGridAdapter(GalleryHomeActivity.this, items);
         staggeredGridView.setAdapter(itemGridAdapter);
         staggeredGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                DetailImageActivity.toDetailImageActivity(GalleryHome.this, items[position]);
+                DetailImageActivity.toDetailImageActivity(GalleryHomeActivity.this, items[position]);
             }
-        });
-
+        });*/
     }
 
-    /*public class JSONTask extends AsyncTask<String, String, List<PopularModel> > {
+    public class JSONTask extends AsyncTask<String, String, List<GalleryAllModel> > {
 
         @Override
-        protected List<PopularModel> doInBackground(String... params) {
+        protected List<GalleryAllModel> doInBackground(String... params) {
 
             HttpURLConnection connection = null;
             BufferedReader reader = null;
@@ -129,25 +118,21 @@ public class GalleryHome extends AppCompatActivity {
                 JSONArray parentArray = parentObject.getJSONArray("data");
 
 
-                List<PopularModel> popularModelList = new ArrayList<>();
+                ArrayList<GalleryAllModel> galleryAllModelList = new ArrayList<>();
 
                 for(int i = 0; i<parentArray.length();i++){
                     JSONObject finalObject = parentArray.getJSONObject(i);
 
-                    PopularModel popularModel = new PopularModel();
-                    popularModel.setId(finalObject.getInt("id"));
-                    popularModel.setNama(finalObject.getString("nama"));
-                    popularModel.setJenisWisata(finalObject.getString("jenis_wisata"));
-                    popularModel.setJumlahReview(finalObject.getInt("jumlah_review"));
-                    popularModel.setRataRating((float) finalObject.getDouble("rata_rating"));
-                    popularModel.setGambar(finalObject.getString("gambar"));
-
+                    GalleryAllModel galleryAllModel = new GalleryAllModel();
+                    galleryAllModel.setNama_wisata(finalObject.getString("nama_wisata"));
+                    galleryAllModel.setGambar(finalObject.getString("gambar"));
 
                     //adding the final object in the list
-                    popularModelList.add(popularModel);
+                    galleryAllModelList.add(galleryAllModel);
 
                 }
-                return popularModelList;
+                cekLog(String.valueOf(galleryAllModelList));
+                return galleryAllModelList;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -172,10 +157,10 @@ public class GalleryHome extends AppCompatActivity {
 
         @Override
 
-        protected void onPostExecute(List<PopularModel> result) {
+        protected void onPostExecute(List<GalleryAllModel> result) {
             super.onPostExecute(result);
-            PopularAdapter adapter = new PopularAdapter(getApplicationContext(), R.layout.row_popular, result);
-            lvPopular.setAdapter(adapter);
+            //PopularAdapter adapter = new PopularAdapter(getApplicationContext(), R.layout.row_popular, result);
+            //lvPopular.setAdapter(adapter);
 
             // TODO need to set data to the list
 
@@ -228,7 +213,6 @@ public class GalleryHome extends AppCompatActivity {
                 holder.tvJenisWisata= (TextView)convertView.findViewById(R.id.tv_JenisWisata);
                 holder.rbRataRating= (RatingBar)convertView.findViewById(R.id.rb_RataRating);
                 holder.tvJumlahReview= (TextView)convertView.findViewById(R.id.tv_JumlahReview);
-                holder.rlPopularAll = (RelativeLayout)convertView.findViewById(R.id.rl_PopularAll);
                 convertView.setTag(holder);
             }
             else{
@@ -271,15 +255,6 @@ public class GalleryHome extends AppCompatActivity {
             holder.rbRataRating.setRating(popularModelList.get(position).getRataRating());
 
 
-            holder.rlPopularAll.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent myIntent = new Intent(PopularDestinationActivity.this, PopularDestinationDetailActivity.class);
-                    PopularModel pmdl = popularModelList.get(position);
-                    myIntent.putExtra(PopularDestinationDetailActivity.KEY_ITEM, pmdl);
-                    startActivityForResult(myIntent, 0);
-                }
-            });
 
             return convertView;
         }
@@ -291,7 +266,25 @@ public class GalleryHome extends AppCompatActivity {
             private TextView tvJenisWisata;
             private RatingBar rbRataRating;
             private TextView tvJumlahReview;
-            private RelativeLayout rlPopularAll;
         }
-    }*/
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == android.R.id.home) {
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

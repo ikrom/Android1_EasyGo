@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tc.easygo.GalleryHome">
+    tools:context="tc.easygo.GalleryHomeActivity"
+    android:orientation="vertical">
+
     <include
         android:id="@+id/tool_bar"
         layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
 
     <com.etsy.android.grid.StaggeredGridView
         android:id="@+id/gv_staggered"
-        app:column_count="2"
-        app:item_margin="8dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:column_count="2"
+        app:item_margin="8dp" />
 
-</RelativeLayout>
+</LinearLayout>
