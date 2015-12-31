@@ -48,8 +48,8 @@
     <string-array name="daftar_peta">
         <item>Kawah Ijen</item>
         <item>Teluk Hijau</item>
-        <item>Pantai Plengkung / G-Land</item>
-        <item>Taman Nasional Alas Purwo</item>
+        <!--item>Pantai Plengkung / G-Land</item>
+        <item>Taman Nasional Alas Purwo</item-->
         <item>Virdes Batik Gallery</item>
     </string-array>
     <string name="title_activity_calender">CalenderActivity</string>
