@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by ikromaulia on 12/1/2015.
  */
-public class TipsAdapter extends BaseAdapter {
+/*public class TipsAdapter extends BaseAdapter {
     ArrayList<TipsModel> tipsItem;
     Activity activity;
 
@@ -55,4 +55,4 @@ public class TipsAdapter extends BaseAdapter {
     static class ViewHolder{
         TextView tvTips;
     }
-}
+}*/

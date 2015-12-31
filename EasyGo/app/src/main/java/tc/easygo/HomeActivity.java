@@ -10,6 +10,9 @@ import android.widget.ImageView;
 
 public class HomeActivity extends AppCompatActivity {
 
+    //id user manual
+    String id_user = String.valueOf(1);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +22,7 @@ public class HomeActivity extends AppCompatActivity {
         ImageView homeTips = (ImageView)findViewById(R.id.home_tips);
         ImageView homeAgenda = (ImageView)findViewById(R.id.home_agenda);
         ImageView homePlan = (ImageView)findViewById(R.id.home_plan);
+        ImageView homePeta = (ImageView)findViewById(R.id.home_peta);
         final ImageView homeJelajah = (ImageView)findViewById(R.id.home_jelajah);
 
         homeJelajah.setOnClickListener(new View.OnClickListener() {
@@ -37,10 +41,19 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        homePeta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,MapsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         homePlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeActivity.this,PlanActivity.class);
+                intent.putExtra("id_user",id_user);
                 startActivity(intent);
             }
         });
