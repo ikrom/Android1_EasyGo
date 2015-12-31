@@ -67,14 +67,16 @@ public class GalleryActivity extends AppCompatActivity implements AsyncResponse 
         //Post Data
         GetDataPost(id);
 
+        ImageButton ibNavMap = (ImageButton) findViewById(R.id.ib_NavMap);
         ImageButton ibNavPreview = (ImageButton)findViewById(R.id.ib_NavPreview);
-        ImageButton ibNavJelajah = (ImageButton)findViewById(R.id.ib_NavJelajah);
         ImageButton ibNavPlan = (ImageButton)findViewById(R.id.ib_NavPlan);
         ImageButton ibNavTips = (ImageButton)findViewById(R.id.ib_NavTips);
 
-        ibNavJelajah.setOnClickListener(new View.OnClickListener() {
+        ibNavMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(GalleryActivity.this, MapsActivity.class);
+                startActivity(intent);
             }
         });
         ibNavPreview.setOnClickListener(new View.OnClickListener() {
