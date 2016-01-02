@@ -60,7 +60,6 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".CalenderActivity" />
         <activity android:name=".ListViewActivity" />
-<<<<<<< HEAD
         <activity android:name=".GalleryHomeActivity" />
         <activity android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -70,16 +69,12 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-=======
-        <activity android:name=".GalleryHomeActivity"></activity>
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyB43UIOjs0QC5WghS4S12yMtJK8i_m23rg" />
->>>>>>> d37b3336608c1801c73fb9170782cbd5e0cac230
     </application>
 
 </manifest>
