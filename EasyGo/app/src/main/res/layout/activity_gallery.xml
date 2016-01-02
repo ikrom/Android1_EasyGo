@@ -21,8 +21,8 @@
             android:padding="10dp">
             <ImageButton
                 android:id="@+id/ib_NavPreview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="47dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
@@ -30,8 +30,8 @@
 
             <ImageButton
                 android:id="@+id/ib_NavMap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="47dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
@@ -39,16 +39,16 @@
 
             <ImageButton
                 android:id="@+id/ib_NavPlan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="47dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/nav_plan" />
 
             <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="47dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
@@ -56,8 +56,8 @@
 
             <ImageButton
                 android:id="@+id/ib_NavTips"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="47dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"

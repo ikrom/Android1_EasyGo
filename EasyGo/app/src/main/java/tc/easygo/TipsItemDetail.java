@@ -48,6 +48,7 @@ public class TipsItemDetail extends AppCompatActivity implements AsyncResponse {
 
         detailTipsItem = new ArrayList<>();
 
+
         //post data
         GetDataPost(id);
     }

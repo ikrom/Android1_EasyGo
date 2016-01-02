@@ -11,16 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity" />
-        <activity android:name=".SplashAcitivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".HomeActivity"></activity>
         <activity android:name=".TipsActivity" />
         <activity android:name=".PlanActivity" />
         <activity android:name=".DetailTipsActivity" />
@@ -49,16 +42,22 @@
         <activity
             android:name=".CheckPreferenceActivity"
             android:label="@string/title_activity_check_preference"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".JelajahActivity"
             android:label="@string/title_activity_jelajah"
             android:theme="@style/AppTheme" />
         <activity android:name=".CalenderActivity" />
         <activity android:name=".ListViewActivity" />
-        <activity android:name=".GalleryHomeActivity"></activity>
+        <activity android:name=".GalleryHomeActivity" />
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>

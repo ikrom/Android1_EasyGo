@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -22,11 +24,13 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,15 +44,22 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
+import tc.easygo.adapter.GalleryAllAdapter;
 import tc.easygo.adapter.ItemGridAdapter;
+import tc.easygo.models.DetailsTipsModel;
 import tc.easygo.models.GalleryAllModel;
 import tc.easygo.models.PopularModel;
 
 public class GalleryHomeActivity extends AppCompatActivity {
 
     private StaggeredGridView staggeredGridView;
+    private ArrayList<GalleryAllModel> galleryAllItem;
+
     private String[] items = new String[]{
             "https://s-media-cache-ak0.pinimg.com/736x/31/72/90/3172904c6591b127ac71b66b300a87f4.jpg",
             "https://s-media-cache-ak0.pinimg.com/736x/c4/93/d1/c493d196b1b4e0ff61d8cb4a13727916.jpg",
@@ -66,13 +77,18 @@ public class GalleryHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery_home);
+        Toast.makeText(getApplicationContext(), "coba",Toast.LENGTH_LONG).show();
 
         //Toolbar
         Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Gallery");
 
-        staggeredGridView = (StaggeredGridView) findViewById(R.id.gv_staggered);
+        //staggeredGridView = (StaggeredGridView) findViewById(R.id.gv_staggered);
+
+        galleryAllItem = new ArrayList<>();
+
+
 
         //JSON
         new JSONTask().execute("http://navits.esy.es/index.php/services/getallgallery");
@@ -117,22 +133,34 @@ public class GalleryHomeActivity extends AppCompatActivity {
                 //cekLog(String.valueOf(parentObject));
                 JSONArray parentArray = parentObject.getJSONArray("data");
 
+                List<GalleryAllModel> galleryAllModels = new ArrayList<>() ;
+                //GalleryAllModel galleryAllList;
+                //cekLog(parentArray.toString());
 
-                ArrayList<GalleryAllModel> galleryAllModelList = new ArrayList<>();
 
                 for(int i = 0; i<parentArray.length();i++){
+
                     JSONObject finalObject = parentArray.getJSONObject(i);
+                    /*
+                    galleryAllList = new GalleryAllModel();
+                    String objectNamaWisata = finalObject.getString("nama_wisata");
+                    String objectGambar = finalObject.getString("gambar");
+
+                    galleryAllList.setNama_wisata(objectNamaWisata);
+                    galleryAllList.setGambar(objectGambar);
+                    //adding the final object in the list
+                    galleryAllItem.add(galleryAllList);*/
 
                     GalleryAllModel galleryAllModel = new GalleryAllModel();
-                    galleryAllModel.setNama_wisata(finalObject.getString("nama_wisata"));
                     galleryAllModel.setGambar(finalObject.getString("gambar"));
+                    galleryAllModel.setNama_wisata(finalObject.getString("nama_wisata"));
+                    //cekLog(galleryAllModel.getGambar());
 
-                    //adding the final object in the list
-                    galleryAllModelList.add(galleryAllModel);
+                    galleryAllModels.add(galleryAllModel);
 
                 }
-                cekLog(String.valueOf(galleryAllModelList));
-                return galleryAllModelList;
+                //cekLog(galleryAllModels.toString());
+                return galleryAllModels;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -159,9 +187,12 @@ public class GalleryHomeActivity extends AppCompatActivity {
 
         protected void onPostExecute(List<GalleryAllModel> result) {
             super.onPostExecute(result);
-            //PopularAdapter adapter = new PopularAdapter(getApplicationContext(), R.layout.row_popular, result);
+            staggeredGridView = (StaggeredGridView)findViewById(R.id.gv_staggered);
+            //GalleryAllAdapter adapter = new GalleryAllAdapter(GalleryHomeActivity.this, result);
+            GalleryHomeAdapter adapter = new GalleryHomeAdapter(getApplicationContext(), R.layout.row_grid, result);
+            staggeredGridView.setAdapter(adapter);
+            //PopularAdapter adapter = new PopularAdapter(getApplicationContext(), R.layout.row_grid, result);
             //lvPopular.setAdapter(adapter);
-
             // TODO need to set data to the list
 
         }
@@ -186,14 +217,14 @@ public class GalleryHomeActivity extends AppCompatActivity {
                 .show();
     }
 
-    public class PopularAdapter extends ArrayAdapter {
+    public class GalleryHomeAdapter extends ArrayAdapter {
 
-        private List<PopularModel> popularModelList;
+        private List<GalleryAllModel> galleryAllModels;
         private int resource;
         private LayoutInflater inflater;
-        public PopularAdapter(Context context, int resource, List<PopularModel> objects) {
+        public GalleryHomeAdapter(Context context, int resource, List<GalleryAllModel> objects) {
             super(context, resource, objects);
-            popularModelList = objects;
+            galleryAllModels = objects;
             this.resource=resource;
             inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         }
@@ -207,52 +238,37 @@ public class GalleryHomeActivity extends AppCompatActivity {
                 holder=new ViewHolder();
                 convertView = inflater.inflate(resource, null);
 
-                holder.tvId = (TextView)convertView.findViewById(R.id.tv_IdPopular);
+                holder.gambar = (ImageView)convertView.findViewById(R.id.item_img_grid);
+                /*holder.tvId = (TextView)convertView.findViewById(R.id.tv_IdPopular);
                 holder.ivPhoto= (ImageView)convertView.findViewById(R.id.iv_Photo);
                 holder.tvNama = (TextView)convertView.findViewById(R.id.tv_nama);
                 holder.tvJenisWisata= (TextView)convertView.findViewById(R.id.tv_JenisWisata);
                 holder.rbRataRating= (RatingBar)convertView.findViewById(R.id.rb_RataRating);
-                holder.tvJumlahReview= (TextView)convertView.findViewById(R.id.tv_JumlahReview);
+                holder.tvJumlahReview= (TextView)convertView.findViewById(R.id.tv_JumlahReview);*/
                 convertView.setTag(holder);
             }
             else{
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            final ProgressBar pbPopular = (ProgressBar)convertView.findViewById(R.id.pb_popular);
+            //final ProgressBar pbPopular = (ProgressBar)convertView.findViewById(R.id.pb_popular);
 
 
 
             // Then later, when you want to display image
-            ImageLoader.getInstance().displayImage(popularModelList.get(position).getGambar(), holder.ivPhoto, new ImageLoadingListener() {
-                @Override
-                public void onLoadingStarted(String imageUri, View view) {
-                    pbPopular.setVisibility(View.VISIBLE);
-                }
+            //ImageLoader.getInstance().displayImage(galleryAllModels.get(position).getGambar(), holder.gambar);
+            Picasso.with(GalleryHomeActivity.this).load(String.valueOf(galleryAllModels.get(position))).placeholder(ContextCompat.getDrawable(GalleryHomeActivity.this, R.drawable.placeholder))
+                    .into(holder.gambar);
 
-                @Override
-                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    pbPopular.setVisibility(View.GONE);
-                }
 
-                @Override
-                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    pbPopular.setVisibility(View.GONE);
-                }
 
-                @Override
-                public void onLoadingCancelled(String imageUri, View view) {
-                    pbPopular.setVisibility(View.GONE);
-                }
-            });
-
-            holder.tvId.setText("" + popularModelList.get(position).getId());
+            /*holder.tvId.setText("" + popularModelList.get(position).getId());
             holder.tvNama.setText(popularModelList.get(position).getNama());
             holder.tvJenisWisata.setText(popularModelList.get(position).getJenisWisata());
-            holder.tvJumlahReview.setText(popularModelList.get(position).getJumlahReview() + " ulasan");
+            holder.tvJumlahReview.setText(popularModelList.get(position).getJumlahReview() + " ulasan");*/
 
             //rating bar
-            holder.rbRataRating.setRating(popularModelList.get(position).getRataRating());
+            //holder.rbRataRating.setRating(popularModelList.get(position).getRataRating());
 
 
 
@@ -260,12 +276,13 @@ public class GalleryHomeActivity extends AppCompatActivity {
         }
 
         class ViewHolder{
-            private TextView tvId;
+            /*private TextView tvId;
             private ImageView ivPhoto;
             private TextView tvNama;
             private TextView tvJenisWisata;
             private RatingBar rbRataRating;
-            private TextView tvJumlahReview;
+            private TextView tvJumlahReview;*/
+            private ImageView gambar;
         }
     }
 

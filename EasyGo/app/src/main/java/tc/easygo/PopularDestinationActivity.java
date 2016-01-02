@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -110,6 +111,7 @@ public class PopularDestinationActivity extends AppCompatActivity {
                 JSONObject parentObject = new JSONObject(finalJson);
                 //cekLog(String.valueOf(parentObject));
                 JSONArray parentArray = parentObject.getJSONArray("data");
+                //Toast.makeText(PopularDestinationActivity.this, "coba", Toast.LENGTH_SHORT).show();
 
 
                 List<PopularModel> popularModelList = new ArrayList<>();
