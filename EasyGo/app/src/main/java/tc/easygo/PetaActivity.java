@@ -16,6 +16,8 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -46,6 +48,7 @@ public class PetaActivity extends AppCompatActivity implements LocationListener 
     double mLatitude=0;
     double mLongitude=0;
 
+    TextView tvDistanceDuration;
     private Spinner spinner1;
     private Button btnSubmit;
 
@@ -53,6 +56,8 @@ public class PetaActivity extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peta);
+
+        tvDistanceDuration = (TextView) findViewById(R.id.tv_distance_time);
 
         // Getting Google Play availability status
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getBaseContext());
@@ -434,6 +439,15 @@ public class PetaActivity extends AppCompatActivity implements LocationListener 
             ArrayList<LatLng> points = null;
             PolylineOptions lineOptions = null;
 
+            MarkerOptions markerOptions = new MarkerOptions();
+            String distance = "";
+            String duration = "";
+
+            if(result.size()<1){
+                Toast.makeText(getBaseContext(), "No Points", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             // Traversing through all the routes
             for(int i=0;i<result.size();i++){
                 points = new ArrayList<LatLng>();
@@ -442,9 +456,19 @@ public class PetaActivity extends AppCompatActivity implements LocationListener 
                 // Fetching i-th route
                 List<HashMap<String, String>> path = result.get(i);
 
+
+
                 // Fetching all the points in i-th route
                 for(int j=0;j<path.size();j++){
                     HashMap<String,String> point = path.get(j);
+
+                    if(j==0){    // Get distance from the list
+                        distance = (String)point.get("distance");
+                        continue;
+                    }else if(j==1){ // Get duration from the list
+                        duration = (String)point.get("duration");
+                        continue;
+                    }
 
                     double lat = Double.parseDouble(point.get("lat"));
                     double lng = Double.parseDouble(point.get("lng"));
@@ -458,6 +482,8 @@ public class PetaActivity extends AppCompatActivity implements LocationListener 
                 lineOptions.width(2);
                 lineOptions.color(Color.RED);
             }
+
+            tvDistanceDuration.setText("Distance:"+distance + ", Duration:"+duration);
 
             // Drawing polyline in the Google Map for the i-th route
             mGoogleMap.addPolyline(lineOptions);
