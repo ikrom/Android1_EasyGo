@@ -26,11 +26,18 @@
         android:layout_below="@id/spinner1"
         android:layout_centerInParent="true"/>
 
+    <TextView
+        android:id="@+id/tv_distance_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lokasi belum ditentukan"
+        android:layout_below="@id/btnSubmit"/>
+
     <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnSubmit"/>
+        android:layout_below="@+id/tv_distance_time" />
 
 </RelativeLayout>
