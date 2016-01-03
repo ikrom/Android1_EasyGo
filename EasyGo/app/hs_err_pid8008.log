@@ -1,0 +1,221 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 240656 bytes for Chunk::new
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:390), pid=8008, tid=6908
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_31-b13) (build 1.8.0_31-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.31-b07 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000177d9000):  JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=6908, stack(0x0000000017eb0000,0x0000000017fb0000)]
+
+Stack: [0x0000000017eb0000,0x0000000017fb0000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x3169ba]
+
+
+Current CompileTask:
+C2:   1466 1090       4       com.android.dx.ssa.SsaMethod::computeReachability (131 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x0000000017adb800 JavaThread "pool-1-thread-4" [_thread_blocked, id=7920, stack(0x00000000187b0000,0x00000000188b0000)]
+  0x0000000017ad2800 JavaThread "pool-1-thread-3" [_thread_in_vm, id=920, stack(0x00000000186b0000,0x00000000187b0000)]
+  0x0000000017acb800 JavaThread "pool-1-thread-2" [_thread_in_vm, id=5512, stack(0x00000000185b0000,0x00000000186b0000)]
+  0x0000000017ac8800 JavaThread "pool-2-thread-1" [_thread_blocked, id=7120, stack(0x00000000184b0000,0x00000000185b0000)]
+  0x0000000017ac8000 JavaThread "pool-1-thread-1" [_thread_blocked, id=7404, stack(0x00000000183b0000,0x00000000184b0000)]
+  0x0000000017842800 JavaThread "Service Thread" daemon [_thread_blocked, id=7616, stack(0x00000000181b0000,0x00000000182b0000)]
+  0x0000000017838000 JavaThread "C1 CompilerThread3" daemon [_thread_in_native, id=7976, stack(0x00000000180b0000,0x00000000181b0000)]
+  0x0000000017835000 JavaThread "C2 CompilerThread2" daemon [_thread_in_native, id=7304, stack(0x0000000017fb0000,0x00000000180b0000)]
+=>0x00000000177d9000 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=6908, stack(0x0000000017eb0000,0x0000000017fb0000)]
+  0x00000000177d7000 JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=7688, stack(0x0000000017db0000,0x0000000017eb0000)]
+  0x00000000177d4800 JavaThread "Attach Listener" daemon [_thread_blocked, id=4816, stack(0x0000000017cb0000,0x0000000017db0000)]
+  0x00000000177d4000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=3436, stack(0x0000000017bb0000,0x0000000017cb0000)]
+  0x0000000002cb2000 JavaThread "Finalizer" daemon [_thread_blocked, id=3188, stack(0x00000000176b0000,0x00000000177b0000)]
+  0x0000000002cb1000 JavaThread "Reference Handler" daemon [_thread_blocked, id=728, stack(0x00000000175b0000,0x00000000176b0000)]
+  0x0000000002bc0800 JavaThread "main" [_thread_blocked, id=5152, stack(0x0000000002aa0000,0x0000000002ba0000)]
+
+Other Threads:
+  0x00000000157d8800 VMThread [stack: 0x00000000174b0000,0x00000000175b0000] [id=1088]
+  0x0000000017844800 WatcherThread [stack: 0x00000000182b0000,0x00000000183b0000] [id=4884]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 18944K, used 10756K [0x00000000eab00000, 0x00000000ed000000, 0x0000000100000000)
+  eden space 16384K, 50% used [0x00000000eab00000,0x00000000eb303420,0x00000000ebb00000)
+  from space 2560K, 99% used [0x00000000ebb00000,0x00000000ebd7dc78,0x00000000ebd80000)
+  to   space 2560K, 0% used [0x00000000ecd80000,0x00000000ecd80000,0x00000000ed000000)
+ ParOldGen       total 44032K, used 1682K [0x00000000c0000000, 0x00000000c2b00000, 0x00000000eab00000)
+  object space 44032K, 3% used [0x00000000c0000000,0x00000000c01a4990,0x00000000c2b00000)
+ Metaspace       used 5808K, capacity 6896K, committed 7040K, reserved 1056768K
+  class space    used 583K, capacity 616K, committed 640K, reserved 1048576K
+
+Card table byte_map: [0x0000000012080000,0x0000000012290000] byte_map_base: 0x0000000011a80000
+
+Marking Bits: (ParMarkBitMap*) 0x00000000702ed4f0
+ Begin Bits: [0x0000000012bf0000, 0x0000000013bf0000)
+ End Bits:   [0x0000000013bf0000, 0x0000000014bf0000)
+
+Polling page: 0x00000000011e0000
+
+CodeCache: size=245760Kb used=4228Kb max_used=4228Kb free=241531Kb
+ bounds [0x0000000002cc0000, 0x00000000030f0000, 0x0000000011cc0000]
+ total_blobs=1346 nmethods=1082 adapters=178
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 1.460 Thread 0x0000000017838000 nmethod 1081 0x00000000030d9010 code [0x00000000030d91c0, 0x00000000030d97e8]
+Event: 1.460 Thread 0x0000000017838000 1094       3       com.android.dx.rop.code.LocalItem::compareTo (9 bytes)
+Event: 1.461 Thread 0x0000000017838000 nmethod 1094 0x00000000030d8510 code [0x00000000030d86c0, 0x00000000030d8d98]
+Event: 1.461 Thread 0x0000000017838000 1095       3       com.android.dx.ssa.SsaMethod::mapRegisters (87 bytes)
+Event: 1.461 Thread 0x0000000017838000 nmethod 1095 0x00000000030da1d0 code [0x00000000030da440, 0x00000000030db568]
+Event: 1.461 Thread 0x0000000017838000 1075       3       com.android.dx.rop.type.Prototype::withFirstParameter (68 bytes)
+Event: 1.462 Thread 0x0000000017838000 nmethod 1075 0x00000000030d7190 code [0x00000000030d73c0, 0x00000000030d7fd8]
+Event: 1.462 Thread 0x0000000017838000 1096       3       com.android.dx.ssa.DeadCodeRemover::run (194 bytes)
+Event: 1.464 Thread 0x0000000017838000 nmethod 1096 0x00000000030dbd50 code [0x00000000030dc0c0, 0x00000000030dde48]
+Event: 1.464 Thread 0x0000000017838000 1068       3       com.android.dx.cf.code.BasicBlocker::visitConstant (39 bytes)
+
+GC Heap History (2 events):
+Event: 0.764 GC heap before
+{Heap before GC invocations=1 (full 0):
+ PSYoungGen      total 18944K, used 16384K [0x00000000eab00000, 0x00000000ec000000, 0x0000000100000000)
+  eden space 16384K, 100% used [0x00000000eab00000,0x00000000ebb00000,0x00000000ebb00000)
+  from space 2560K, 0% used [0x00000000ebd80000,0x00000000ebd80000,0x00000000ec000000)
+  to   space 2560K, 0% used [0x00000000ebb00000,0x00000000ebb00000,0x00000000ebd80000)
+ ParOldGen       total 44032K, used 0K [0x00000000c0000000, 0x00000000c2b00000, 0x00000000eab00000)
+  object space 44032K, 0% used [0x00000000c0000000,0x00000000c0000000,0x00000000c2b00000)
+ Metaspace       used 5664K, capacity 6768K, committed 7040K, reserved 1056768K
+  class space    used 582K, capacity 616K, committed 640K, reserved 1048576K
+Event: 1.011 GC heap after
+Heap after GC invocations=1 (full 0):
+ PSYoungGen      total 18944K, used 2551K [0x00000000eab00000, 0x00000000ed000000, 0x0000000100000000)
+  eden space 16384K, 0% used [0x00000000eab00000,0x00000000eab00000,0x00000000ebb00000)
+  from space 2560K, 99% used [0x00000000ebb00000,0x00000000ebd7dc78,0x00000000ebd80000)
+  to   space 2560K, 0% used [0x00000000ecd80000,0x00000000ecd80000,0x00000000ed000000)
+ ParOldGen       total 44032K, used 1682K [0x00000000c0000000, 0x00000000c2b00000, 0x00000000eab00000)
+  object space 44032K, 3% used [0x00000000c0000000,0x00000000c01a4990,0x00000000c2b00000)
+ Metaspace       used 5664K, capacity 6768K, committed 7040K, reserved 1056768K
+  class space    used 582K, capacity 616K, committed 640K, reserved 1048576K
+}
+
+Deoptimization events (5 events):
+Event: 0.706 Thread 0x0000000017ad2800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002f7abec method=com.android.dx.ssa.NormalSsaInsn.accept(Lcom/android/dx/ssa/SsaInsn$Visitor;)V @ 9
+Event: 0.706 Thread 0x0000000017ad2800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002f22530 method=com.android.dx.ssa.NormalSsaInsn.accept(Lcom/android/dx/ssa/SsaInsn$Visitor;)V @ 9
+Event: 0.707 Thread 0x0000000017ad2800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002f7abec method=com.android.dx.ssa.NormalSsaInsn.accept(Lcom/android/dx/ssa/SsaInsn$Visitor;)V @ 9
+Event: 0.707 Thread 0x0000000017ad2800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002f22530 method=com.android.dx.ssa.NormalSsaInsn.accept(Lcom/android/dx/ssa/SsaInsn$Visitor;)V @ 9
+Event: 0.707 Thread 0x0000000017ad2800 Uncommon trap: reason=class_check action=maybe_recompile pc=0x0000000002f7abec method=com.android.dx.ssa.NormalSsaInsn.accept(Lcom/android/dx/ssa/SsaInsn$Visitor;)V @ 9
+
+Internal exceptions (10 events):
+Event: 0.546 Thread 0x0000000002bc0800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eb70f960) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+Event: 0.547 Thread 0x0000000002bc0800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eb721e08) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+Event: 0.704 Thread 0x0000000017acb800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eb8bee48) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+Event: 0.705 Thread 0x0000000017acb800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eb8c4898) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+Event: 0.706 Thread 0x0000000017acb800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eb8ca090) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+Event: 0.706 Thread 0x0000000017acb800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eb8cf188) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+Event: 0.763 Thread 0x0000000017ac8000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eba3f050) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+Event: 1.021 Thread 0x0000000017acb800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eabfe6b8) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+Event: 1.047 Thread 0x0000000017adb800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eaf891c8) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+Event: 1.121 Thread 0x0000000002bc0800 Exception <a 'java/security/PrivilegedActionException'> (0x00000000eb11bdb0) thrown at [C:\workspace\8-2-build-windows-amd64-cygwin\jdk8u31\2394\hotspot\src\share\vm\prims\jvm.cpp, line 1312]
+
+Events (10 events):
+Event: 0.763 loading class com/android/dx/cf/code/BytecodeArray$ConstantParserVisitor
+Event: 0.763 loading class com/android/dx/cf/code/BytecodeArray$ConstantParserVisitor done
+Event: 0.764 Executing VM operation: ParallelGCFailedAllocation
+Event: 1.011 Executing VM operation: ParallelGCFailedAllocation done
+Event: 1.021 loading class com/android/dx/dex/file/FieldAnnotationStruct
+Event: 1.021 loading class com/android/dx/dex/file/FieldAnnotationStruct done
+Event: 1.047 loading class com/android/dx/cf/code/SwitchList
+Event: 1.047 loading class com/android/dx/cf/code/SwitchList done
+Event: 1.121 loading class com/android/dx/cf/attrib/AttLocalVariableTypeTable
+Event: 1.121 loading class com/android/dx/cf/attrib/AttLocalVariableTypeTable done
+
+
+Dynamic libraries:
+0x00007ff73e6e0000 - 0x00007ff73e714000 	C:\Program Files\Java\jdk1.8.0_31\bin\java.exe
+0x00007ffda6090000 - 0x00007ffda623c000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffda3a50000 - 0x00007ffda3b8e000 	C:\Windows\system32\KERNEL32.DLL
+0x00007ffda3540000 - 0x00007ffda3655000 	C:\Windows\system32\KERNELBASE.dll
+0x00007ffda1dd0000 - 0x00007ffda1e5e000 	C:\Windows\system32\apphelp.dll
+0x00007ffd9e5c0000 - 0x00007ffd9e613000 	C:\Windows\AppPatch\AppPatch64\AcGenral.DLL
+0x00007ffda4640000 - 0x00007ffda46ea000 	C:\Windows\system32\msvcrt.dll
+0x00007ffda2fa0000 - 0x00007ffda2fce000 	C:\Windows\SYSTEM32\SspiCli.dll
+0x00007ffda3e00000 - 0x00007ffda3e54000 	C:\Windows\system32\SHLWAPI.dll
+0x00007ffda4290000 - 0x00007ffda4407000 	C:\Windows\system32\USER32.dll
+0x00007ffda3b90000 - 0x00007ffda3d24000 	C:\Windows\system32\ole32.dll
+0x00007ffda4b60000 - 0x00007ffda608b000 	C:\Windows\system32\SHELL32.dll
+0x00007ffda2780000 - 0x00007ffda27a1000 	C:\Windows\SYSTEM32\USERENV.dll
+0x00007ffda3e60000 - 0x00007ffda3f0a000 	C:\Windows\system32\ADVAPI32.dll
+0x00007ffd942c0000 - 0x00007ffd942de000 	C:\Windows\SYSTEM32\MPR.dll
+0x00007ffda4140000 - 0x00007ffda4281000 	C:\Windows\system32\RPCRT4.dll
+0x00007ffda3f10000 - 0x00007ffda3f69000 	C:\Windows\SYSTEM32\sechost.dll
+0x00007ffda4420000 - 0x00007ffda4631000 	C:\Windows\SYSTEM32\combase.dll
+0x00007ffda3710000 - 0x00007ffda385f000 	C:\Windows\system32\GDI32.dll
+0x00007ffda31e0000 - 0x00007ffda31f5000 	C:\Windows\SYSTEM32\profapi.dll
+0x00007ffda1c60000 - 0x00007ffda1d12000 	C:\Windows\SYSTEM32\SHCORE.dll
+0x00007ffda4090000 - 0x00007ffda40c6000 	C:\Windows\system32\IMM32.DLL
+0x00007ffda46f0000 - 0x00007ffda4842000 	C:\Windows\system32\MSCTF.dll
+0x00007ffda1070000 - 0x00007ffda12eb000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.9600.18006_none_623f33d3ecbe86e8\COMCTL32.dll
+0x000000006f6e0000 - 0x000000006f7b2000 	C:\Program Files\Java\jdk1.8.0_31\jre\bin\msvcr100.dll
+0x000000006fb10000 - 0x000000007036a000 	C:\Program Files\Java\jdk1.8.0_31\jre\bin\server\jvm.dll
+0x00007ffda1bc0000 - 0x00007ffda1bc9000 	C:\Windows\SYSTEM32\WSOCK32.dll
+0x00007ffda1bd0000 - 0x00007ffda1bf2000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffda4410000 - 0x00007ffda4417000 	C:\Windows\system32\PSAPI.DLL
+0x00007ffda40e0000 - 0x00007ffda413a000 	C:\Windows\system32\WS2_32.dll
+0x00007ffda04a0000 - 0x00007ffda04ca000 	C:\Windows\SYSTEM32\WINMMBASE.dll
+0x00007ffda40d0000 - 0x00007ffda40d9000 	C:\Windows\system32\NSI.dll
+0x00007ffda36c0000 - 0x00007ffda370f000 	C:\Windows\SYSTEM32\cfgmgr32.dll
+0x00007ffda1fd0000 - 0x00007ffda1ff8000 	C:\Windows\SYSTEM32\DEVOBJ.dll
+0x0000000070cd0000 - 0x0000000070cdf000 	C:\Program Files\Java\jdk1.8.0_31\jre\bin\verify.dll
+0x0000000070ca0000 - 0x0000000070cc8000 	C:\Program Files\Java\jdk1.8.0_31\jre\bin\java.dll
+0x000000006faf0000 - 0x000000006fb06000 	C:\Program Files\Java\jdk1.8.0_31\jre\bin\zip.dll
+0x00007ffd9a920000 - 0x00007ffd9aaa9000 	C:\Windows\SYSTEM32\dbghelp.dll
+
+VM Arguments:
+jvm_args: -Xmx1024M -Dfile.encoding=windows-1252 -Duser.country=US -Duser.language=en -Duser.variant 
+java_command: com.android.dx.command.Main --dex --num-threads=4 --output E:\Data Adek\Data Kuliah\SEM 7 - MOBILE\FINAL PROJECT\Android1_EasyGo\EasyGo\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-a8b2d5fdcdc131c15bb49021d61e77e9d68e070d.jar E:\Data Adek\Data Kuliah\SEM 7 - MOBILE\FINAL PROJECT\Android1_EasyGo\EasyGo\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar
+java_class_path (initial): C:\Users\angga\AppData\Local\Android\sdk\build-tools\23.0.1\lib\dx.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\ProgramData\Oracle\Java\javapath;C:\oraclexe\app\oracle\product\10.2.0\server\bin;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\nodejs\;C:\Users\angga\AppData\Roaming\npm;C:\Program Files (x86)\Java\jre7\bin
+USERNAME=angga
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 58 Stepping 9, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8.1 , 64 bit Build 9600 
+
+CPU:total 8 (4 cores per cpu, 2 threads per core) family 6 model 58 stepping 9, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, clmul, erms, ht, tsc, tscinvbit, tscinv
+
+Memory: 4k page, physical 4144288k(432556k free), swap 7290016k(7400k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.31-b07) for windows-amd64 JRE (1.8.0_31-b13), built on Dec 17 2014 21:00:28 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Sat Jan 02 20:43:22 2016
+elapsed time: 1 seconds (0d 0h 0m 1s)
+
