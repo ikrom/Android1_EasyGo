@@ -1,9 +1,12 @@
 package tc.easygo;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -88,4 +91,32 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Home");
     }
 
+    @Override
+    public void onBackPressed() {
+        //Display alert message when back button has been pressed
+        cekLog("Leave Application?");
+        return;
+    }
+
+    public void cekLog(String iniCek){
+        Log.d("", iniCek);
+
+        new AlertDialog.Builder(this)
+                .setTitle("")
+                .setMessage(iniCek)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        android.os.Process.killProcess(android.os.Process.myPid());
+                        System.exit(1);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+    }
 }

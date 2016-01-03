@@ -112,16 +112,16 @@ public class LoginActivity extends AppCompatActivity implements AsyncResponse{
             startActivity(intent);
         } catch (JSONException e) {
             e.printStackTrace();
-            //cekLog("Username atau Password salah.");
-            cekLog(String.valueOf(e));
+            cekLog("Username atau Password salah.");
+            //cekLog(String.valueOf(e));
         }
     }
 
     public void cekLog(String iniCek){
-        Log.d("Kesalahan", iniCek);
+        Log.d("", iniCek);
 
         new AlertDialog.Builder(this)
-                .setTitle("Kesalahan")
+                .setTitle("")
                 .setMessage(iniCek)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
