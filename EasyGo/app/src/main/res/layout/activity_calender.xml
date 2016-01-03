@@ -9,7 +9,7 @@
     tools:context=".CalenderActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -29,6 +29,104 @@
             android:layout_height="wrap_content"
             calendarNS:dateFormat="MMMM yyyy"/>
 
-    </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/ivAcara"
+            android:src="@drawable/acara"
+            android:scaleType="fitXY"
+            android:visibility="gone"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+            android:id="@+id/keteranganLayout"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="@color/colorOrange"
+                android:id="@+id/tanggalLayout"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="26"
+                    android:textColor="#fff"
+                    android:textSize="50sp"
+                    android:id="@+id/tvTanggalAcara" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="November"
+                    android:textColor="#fff"
+                    android:id="@+id/tvBulanAcara"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="2015"
+                    android:textColor="#fff"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/tvTahunAcara" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/colorYellow"
+                android:padding="10dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:text="Festival"
+                    android:textColor="#fff"
+                    android:textStyle="bold"
+                    android:id="@+id/tvJudulAcara"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvJudulAcara"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="lokasi"
+                        android:textColor="#fff"
+                        android:textSize="12sp"
+                        android:id="@+id/tvLokasiAcara" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="deskripsi"
+                        android:textColor="#fff"
+                        android:textSize="12sp"
+                        android:id="@+id/tvDeskripsiAcara" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
