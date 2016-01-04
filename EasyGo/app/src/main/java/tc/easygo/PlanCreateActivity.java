@@ -127,14 +127,14 @@ public class PlanCreateActivity extends AppCompatActivity  implements OnClickLis
             @Override
             public void onClick(View v) {
                 String strCatatan = catatan.getText().toString();
-                String strTujuanWisata = Long.toString(tujuanWisata.getSelectedItemId());
-                String strEvent = Long.toString(event.getSelectedItemId());
+                String strTujuanWisata;
+                if (tujuanWisata.getSelectedItemId() + 1 > 3) strTujuanWisata = Long.toString(tujuanWisata.getSelectedItemId() + 2);
+                else strTujuanWisata = Long.toString(tujuanWisata.getSelectedItemId() + 1);
+                String strEvent = Long.toString(event.getSelectedItemId() + 1);
                 String strIngatkan = getValueIngatkanSaya();
                 String strWaktu = eReminderTime.getText().toString();
                 String strTanggal = etDate.getText().toString();
                 String user = CheckPreference();
-
-                //cekLog("Tempat Wisata : " + user + "," + strTujuanWisata + "," + strCatatan + "," + strTanggal + "," + strWaktu + "," + strIngatkan);
 
                 if(jenisRencana.getSelectedItem().equals("Event"))
                     GetDataPostEvent(user, strEvent, strCatatan, strTanggal, strWaktu, strIngatkan);
@@ -209,7 +209,7 @@ public class PlanCreateActivity extends AppCompatActivity  implements OnClickLis
     private void GetDataPostEvent(String user, String event, String catatan, String tanggal, String waktu, String ingatkan) {
         HashMap<String, String> registerParams = new HashMap<>();
         registerParams.put("id_user", user);
-        registerParams.put("id_wisata", event);
+        registerParams.put("id_event", event);
         registerParams.put("catatan", catatan);
         registerParams.put("tanggal", tanggal);
         registerParams.put("waktu", waktu);
@@ -240,10 +240,10 @@ public class PlanCreateActivity extends AppCompatActivity  implements OnClickLis
     }
 
     public void cekLog(String iniCek){
-        Log.d("Kesalahan", iniCek);
+        Log.d("", iniCek);
 
         new AlertDialog.Builder(this)
-                .setTitle("Kesalahan")
+                .setTitle("")
                 .setMessage(iniCek)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

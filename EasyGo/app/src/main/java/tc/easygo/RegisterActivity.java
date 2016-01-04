@@ -55,8 +55,8 @@ public class RegisterActivity extends AppCompatActivity implements AsyncResponse
                 String nama = boxNama.getText().toString();
                 String email = boxEmail.getText().toString();
                 String sandi = boxSandi.getText().toString();
-                String country = String.valueOf(countrySpinner.getSelectedItemId());
-                String gender = String.valueOf(genderSpinner.getSelectedItemId());
+                String country = Long.toString(countrySpinner.getSelectedItemId() + 1);
+                String gender = Long.toString(genderSpinner.getSelectedItemId() + 1);
 
                 //cekLog("nama : " +nama+ " | email : " +email+ " | sandi : " +sandi+ " | country : " +country+ " | gender : " +gender);
 

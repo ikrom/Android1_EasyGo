@@ -1,8 +1,10 @@
 package tc.easygo;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -34,6 +36,9 @@ public class PlanActivity extends AppCompatActivity implements AsyncResponse {
 
     private String ObjectNamaWisata,ObjectGambarWisata,ObjectNamaEvent,ObjectGambarEvent;
 
+    SharedPreferences sharedPreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +63,16 @@ public class PlanActivity extends AppCompatActivity implements AsyncResponse {
             }
         });
 
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        CheckPreference();
+        /*
         Bundle extras = getIntent().getExtras();
         if (extras == null) {cekLog("Intent error");}
         else {
             id_user = extras.getString("id_user");
             //cekLog(id);
         }
-
+        */
         //Post Data
         GetDataPost(id_user);
 
@@ -80,6 +88,12 @@ public class PlanActivity extends AppCompatActivity implements AsyncResponse {
                 .build();
         ImageLoader.getInstance().init(config); // Do it on Application start
 
+    }
+
+    private void CheckPreference() {
+        String cekIdUser = sharedPreferences.getString("id", "");
+        //cekLog("id user : " + cekIdUser);
+        id_user = cekIdUser;
     }
 
     private void GetDataPost(String idUser) {

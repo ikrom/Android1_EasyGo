@@ -6,14 +6,7 @@
     <string name="wisata_prompt">Pilih wisata</string>
     <string name="event_prompt">Pilih event</string>
     <string-array name="country_arrays">
-        <item>Malaysia</item>
-        <item>United States</item>
         <item>Indonesia</item>
-        <item>France</item>
-        <item>Italy</item>
-        <item>Singapore</item>
-        <item>New Zealand</item>
-        <item>India</item>
     </string-array>
     <string-array name="gender_arrays">
         <item>Laki-laki</item>
@@ -24,14 +17,18 @@
         <item>Event</item>
     </string-array>
     <string-array name="wisata_arrays">
-        <item>Pulau Merah</item>
         <item>Kawah Ijen</item>
-        <item>Green Bay</item>
+        <item>Pantai Pulau Merah</item>
+        <item>Desa Kemiren</item>
+        <item>Inggrisan/Tegal Loji</item>
+        <item>Museum Blambangan</item>
+        <item>Plengkung/G-land</item>
+        <item>Pulau Tabunan</item>
+        <item>Taman Nasional</item>
+        <item>Virdes Batik Gallery</item>
     </string-array>
     <string-array name="event_arrays">
         <item>Event 1</item>
-        <item>Event 2</item>
-        <item>Event 3</item>
     </string-array>
     <string name="title_activity_tips_item">Tips Travelling</string>
     <string name="title_activity_tips_item_detail">TipsItemDetail</string>
