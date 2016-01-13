@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class CalenderActivity extends AppCompatActivity implements AsyncResponse
 {
 
     private TextView tvTanggalAcara, tvBulanAcara, tvTahunAcara, tvJudulAcara, tvLokasiAcara, tvDeskripsiAcara;
-    private LinearLayout keterangan;
+    private RelativeLayout keterangan;
     private ImageView ivAcara;
     private String tanggalTmp;
     private String tmpLokasi, tmpJudul, tmpDeskripsi, tmpGambar, tmpTanggal;
@@ -55,13 +56,13 @@ public class CalenderActivity extends AppCompatActivity implements AsyncResponse
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calender);
 
-        keterangan = (LinearLayout)findViewById(R.id.keteranganLayout);
+        keterangan = (RelativeLayout)findViewById(R.id.keteranganLayout);
         tvTanggalAcara = (TextView)findViewById(R.id.tvTanggalAcara);
         tvBulanAcara = (TextView)findViewById(R.id.tvBulanAcara);
         tvTahunAcara = (TextView)findViewById(R.id.tvTahunAcara);
-        tvJudulAcara = (TextView)findViewById(R.id.tvJudulAcara);
-        tvLokasiAcara = (TextView)findViewById(R.id.tvLokasiAcara);
-        tvDeskripsiAcara = (TextView)findViewById(R.id.tvDeskripsiAcara);
+        tvJudulAcara = (TextView)findViewById(R.id.calender_NamaEvent);
+        tvLokasiAcara = (TextView)findViewById(R.id.calender_LokasiEvent);
+        tvDeskripsiAcara = (TextView)findViewById(R.id.calender_KotaEvent);
         ivAcara = (ImageView)findViewById(R.id.ivAcara);
         GetDataPostEvent();
 
@@ -83,8 +84,8 @@ public class CalenderActivity extends AppCompatActivity implements AsyncResponse
                 //Toast.makeText(CalenderActivity.this, df.format(date), Toast.LENGTH_SHORT).show();
                 //cekLog("df.format(date) : " + df.format(date));
                 if (tmpTanggal.equals(df.format(date))) {
-                    keterangan.setVisibility(View.VISIBLE);
-                    ivAcara.setVisibility(View.VISIBLE);
+                        keterangan.setVisibility(View.VISIBLE);
+                        ivAcara.setVisibility(View.VISIBLE);
                 }
             }
         });

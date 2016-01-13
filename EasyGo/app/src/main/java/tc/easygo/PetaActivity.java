@@ -1,6 +1,7 @@
 package tc.easygo;
 
 import android.app.Dialog;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
@@ -8,6 +9,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,8 +47,8 @@ public class PetaActivity extends AppCompatActivity implements LocationListener 
 
     GoogleMap mGoogleMap;
     ArrayList<LatLng> mMarkerPoints;
-    double mLatitude=0;
-    double mLongitude=0;
+    double mLatitude = 0;
+    double mLongitude = 0;
 
     TextView tvDistanceDuration;
     private Spinner spinner1;
@@ -62,19 +64,19 @@ public class PetaActivity extends AppCompatActivity implements LocationListener 
         // Getting Google Play availability status
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getBaseContext());
 
-        if(status!= ConnectionResult.SUCCESS){ // Google Play Services are not available
+        if (status != ConnectionResult.SUCCESS) { // Google Play Services are not available
 
             int requestCode = 10;
             Dialog dialog = GooglePlayServicesUtil.getErrorDialog(status, this, requestCode);
             dialog.show();
 
-        }else { // Google Play Services are available
+        } else { // Google Play Services are available
 
             // Initializing
             mMarkerPoints = new ArrayList<LatLng>();
 
             // Getting reference to SupportMapFragment of the activity_main
-            SupportMapFragment fm = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
+            SupportMapFragment fm = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
 
             // Getting Map for the SupportMapFragment
             mGoogleMap = fm.getMap();
@@ -94,10 +96,20 @@ public class PetaActivity extends AppCompatActivity implements LocationListener 
             // Getting Current Location From GPS
             Location location = locationManager.getLastKnownLocation(provider);
 
-            if(location!=null){
+            if (location != null) {
                 onLocationChanged(location);
             }
 
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             locationManager.requestLocationUpdates(provider, 20000, 0, this);
 
             // Setting onclick event listener for the map
@@ -250,7 +262,8 @@ public class PetaActivity extends AppCompatActivity implements LocationListener 
                         }
 
                         // draws the marker at the currently touched location
-                        drawMarker(new LatLng(-8.2179929, 114.3760107));
+                        //drawMarker(new LatLng(-8.2179929, 114.3760107));
+                        drawMarker(new LatLng(-8.3665615, 114.1375462));
 
                         // Checks, whether start and end locations are captured
                         if(mMarkerPoints.size() >= 2){

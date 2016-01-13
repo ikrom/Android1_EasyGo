@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1"
     android:orientation="vertical"
+    android:weightSum="1"
     tools:context=".CalenderActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:layout_width="fill_parent"
@@ -22,111 +23,162 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <tc.easygo.CalendarView
-            xmlns:calendarNS="http://schemas.android.com/apk/res/tc.easygo"
+        <tc.easygo.CalendarView xmlns:calendarNS="http://schemas.android.com/apk/res/tc.easygo"
             android:id="@+id/calendar_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            calendarNS:dateFormat="MMMM yyyy"/>
+            android:layout_height="284dp"
+            android:visibility="visible"
+            calendarNS:dateFormat="MMMM yyyy" />
 
         <ImageView
+            android:id="@+id/ivAcara"
             android:layout_width="match_parent"
             android:layout_height="110dp"
-            android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
-            android:id="@+id/ivAcara"
-            android:src="@drawable/acara"
+            android:layout_marginRight="15dp"
             android:scaleType="fitXY"
-            android:visibility="gone"/>
+            android:src="@drawable/acara"
+            android:visibility="gone" />
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/keteranganLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginRight="15dp"
-            android:layout_marginLeft="15dp"
-            android:layout_weight="1"
-            android:id="@+id/keteranganLayout"
-            android:visibility="gone">
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:visibility="visible">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="@color/colorOrange"
-                android:id="@+id/tanggalLayout"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-                <TextView
+
+                <LinearLayout
+                    android:id="@+id/calender_Box_Left"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"
-                    android:text="26"
-                    android:textColor="#fff"
-                    android:textSize="50sp"
-                    android:id="@+id/tvTanggalAcara" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@color/colorOrange"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="November"
-                    android:textColor="#fff"
-                    android:id="@+id/tvBulanAcara"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="2015"
-                    android:textColor="#fff"
-                    android:layout_marginBottom="10dp"
-                    android:id="@+id/tvTahunAcara" />
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/tvTanggalAcara"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="left"
+                            android:text="26"
+                            android:textColor="#fff"
+                            android:textSize="60sp" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/colorYellow"
-                android:padding="10dp"
-                android:visibility="visible">
+                        <TextView
+                            android:id="@+id/tvBulanAcara"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:text="NOVEMBER"
+                            android:textColor="#fff"
+                            android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:text="Festival"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:id="@+id/tvJudulAcara"/>
+                        <TextView
+                            android:id="@+id/tvTahunAcara"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:gravity="left"
+                            android:text="2015"
+                            android:textColor="#fff"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tvJudulAcara"
-                    android:orientation="vertical"
-                    android:visibility="visible">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/colorYellow"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="lokasi"
-                        android:textColor="#fff"
-                        android:textSize="12sp"
-                        android:id="@+id/tvLokasiAcara" />
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="deskripsi"
-                        android:textColor="#fff"
-                        android:textSize="12sp"
-                        android:id="@+id/tvDeskripsiAcara" />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/button_share" />
+                        <ImageButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/arrow_orange"
+                            android:layout_centerInParent="true"
+                            android:layout_alignParentLeft="true"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:layout_marginLeft="10dp">
+
+                            <TextView
+                                android:id="@+id/calender_NamaEvent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Festival Gandrung Sewu"
+                                android:textColor="#fff"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/calender_LokasiEvent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Pantai Boom"
+                                android:textColor="#fff"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/calender_KotaEvent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Banyuwangi"
+                                android:textColor="#fff"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:text="lihat selengkapnya"
+                                android:textColor="@color/colorOrange"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
                 </LinearLayout>
-            </RelativeLayout>
-        </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

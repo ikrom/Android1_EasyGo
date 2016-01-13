@@ -19,5 +19,4 @@
         android:layout_height="match_parent"
         app:column_count="2"
         app:item_margin="8dp" />
-
 </LinearLayout>
